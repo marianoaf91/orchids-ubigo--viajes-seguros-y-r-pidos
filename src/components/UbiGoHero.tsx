@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import Image from "next/image"
 import { MapPin, Navigation, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -61,10 +61,12 @@ export function UbiGoHero() {
             className="hidden lg:block relative"
           >
              <div className="relative z-20 rounded-3xl overflow-hidden border-8 border-zinc-900 shadow-2xl">
-                <img 
+                <Image 
                   src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop" 
                   alt="UbiGo Ride"
-                  className="w-full aspect-[4/5] object-cover"
+                  width={800}
+                  height={1000}
+                  className="w-full h-full object-cover"
                 />
              </div>
              {/* Floating badge */}
@@ -78,3 +80,4 @@ export function UbiGoHero() {
     </section>
   )
 }
+
