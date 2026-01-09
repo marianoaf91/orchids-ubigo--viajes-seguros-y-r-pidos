@@ -1,0 +1,95 @@
+"use client"
+
+import * as React from "react"
+import { ShieldCheck, CreditCard, Lock, Phone, Mail, MapPin, Instagram, Twitter, Facebook } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+
+export function UbiGoFooter() {
+  return (
+    <footer id="contacto" className="bg-black text-white pt-24 pb-12 border-t border-zinc-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 mb-20">
+          {/* Contact Section */}
+          <div>
+            <h2 className="text-4xl font-black mb-6">Contacta con <span className="text-red-600">Nosotros</span></h2>
+            <p className="text-zinc-400 mb-10 leading-relaxed">
+              ¿Tienes alguna duda o necesitas ayuda con un viaje? Nuestro equipo está disponible 24/7 para asistirte.
+            </p>
+            
+            <div className="space-y-6 mb-12">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center text-red-600">
+                  <Phone size={20} />
+                </div>
+                <div>
+                  <p className="text-zinc-500 text-sm">Llámanos</p>
+                  <p className="font-bold">+1 800 UBIGO 00</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center text-red-600">
+                  <Mail size={20} />
+                </div>
+                <div>
+                  <p className="text-zinc-500 text-sm">Email</p>
+                  <p className="font-bold">ayuda@ubigo.com</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <Button variant="outline" className="rounded-full w-12 h-12 p-0 border-zinc-700 hover:bg-red-600 hover:border-red-600">
+                <Instagram size={20} />
+              </Button>
+              <Button variant="outline" className="rounded-full w-12 h-12 p-0 border-zinc-700 hover:bg-red-600 hover:border-red-600">
+                <Twitter size={20} />
+              </Button>
+              <Button variant="outline" className="rounded-full w-12 h-12 p-0 border-zinc-700 hover:bg-red-600 hover:border-red-600">
+                <Facebook size={20} />
+              </Button>
+            </div>
+          </div>
+
+          {/* Form Section */}
+          <div className="bg-zinc-900 p-8 rounded-3xl border border-zinc-800">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <Input placeholder="Nombre" className="bg-black border-zinc-700 h-14 rounded-xl focus:ring-red-600" />
+              <Input placeholder="Email" className="bg-black border-zinc-700 h-14 rounded-xl focus:ring-red-600" />
+            </div>
+            <Input placeholder="Asunto" className="bg-black border-zinc-700 h-14 rounded-xl mb-4 focus:ring-red-600" />
+            <Textarea placeholder="Tu mensaje..." className="bg-black border-zinc-700 min-h-[150px] rounded-xl mb-6 focus:ring-red-600" />
+            <Button className="w-full h-14 bg-red-600 hover:bg-red-700 font-bold text-lg rounded-xl transition-all">
+              Enviar Mensaje
+            </Button>
+          </div>
+        </div>
+
+        {/* Payment Security Section */}
+        <div className="py-12 border-t border-zinc-800 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2 text-zinc-400">
+              <ShieldCheck className="text-red-600" />
+              <span className="text-sm font-medium">Pago 100% Seguro</span>
+            </div>
+            <div className="flex items-center gap-2 text-zinc-400">
+              <Lock className="text-red-600" />
+              <span className="text-sm font-medium">Encriptación SSL</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4 opacity-50">
+            <CreditCard size={32} />
+            <span className="text-xl font-bold tracking-widest italic">VISA</span>
+            <span className="text-xl font-bold tracking-widest italic">MASTER</span>
+            <span className="text-xl font-bold tracking-widest italic">AMEX</span>
+          </div>
+        </div>
+
+        <div className="text-center pt-8 border-t border-zinc-800 text-zinc-600 text-sm">
+          <p>© 2024 UbiGo! Inc. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+  )
+}
