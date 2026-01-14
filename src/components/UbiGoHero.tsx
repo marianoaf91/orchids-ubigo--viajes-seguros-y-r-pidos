@@ -70,10 +70,10 @@ export function UbiGoHero() {
                   />
              </div>
              {/* Floating badge */}
-             <div className="absolute -bottom-6 -left-6 bg-red-600 text-white p-6 rounded-2xl shadow-xl z-30">
-                <p className="text-3xl font-black">24/7</p>
-                <p className="text-sm font-medium opacity-80">Servicio Disponible</p>
-             </div>
+               <div className="absolute -bottom-6 -left-6 bg-red-600 text-white p-6 rounded-2xl shadow-xl z-30">
+                  <p className="text-3xl font-black">SIEMPRE</p>
+                  <p className="text-sm font-medium opacity-80 uppercase tracking-tighter">Disponibilidad Total</p>
+               </div>
           </motion.div>
         </div>
       </div>
