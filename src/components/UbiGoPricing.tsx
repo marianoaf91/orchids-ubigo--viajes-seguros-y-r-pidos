@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Bike, ShieldCheck, Clock, Zap } from "lucide-react"
+import { Bike, Zap } from "lucide-react"
 import { motion } from "framer-motion"
 
 const pricingTiers = [
@@ -10,28 +10,14 @@ const pricingTiers = [
     description: "Viajes económicos y confiables.",
     price: "5.00€",
     icon: <Bike size={24} className="text-red-600" />,
-    features: ["Capacidad: 1 persona", "Tiempo espera: 5 min", "Motos estándar"]
+    features: ["Capacidad: 1 persona", "Casco incluido", "Motos estándar"]
   },
   {
     name: "UbiGo Comfort",
     description: "Espacio extra y conductores mejor calificados.",
     price: "8.50€",
     icon: <Zap size={24} className="text-red-600" />,
-    features: ["Capacidad: 1 persona", "Casco premium incluido", "Motos nuevas"]
-  },
-  {
-    name: "UbiGo Black",
-    description: "La experiencia premium definitiva.",
-    price: "15.00€",
-    icon: <ShieldCheck size={24} className="text-red-600" />,
-    features: ["Capacidad: 1 persona", "Motos de lujo", "Chaqueta de protección"]
-  },
-  {
-    name: "UbiGo XL",
-    description: "Para viajes con maleta pequeña o más potencia.",
-    price: "12.00€",
-    icon: <Clock size={24} className="text-red-600" />,
-    features: ["Capacidad: 1 persona", "Espacio para maleta", "Motor de alta cilindrada"]
+    features: ["Capacidad: 1 persona", "Espacio para maleta", "Casco premium incluido"]
   }
 ]
 
@@ -42,11 +28,11 @@ export function UbiGoPricing() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-black text-black mb-4">Nuestras Tarifas</h2>
           <p className="text-zinc-600 max-w-2xl mx-auto">
-            Elige el servicio que mejor se adapte a tus necesidades. Precios transparentes y sin sorpresas.
+            Elige el servicio que mejor se adapte a tus necesidades en Madrid. Precios transparentes y sin sorpresas.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {pricingTiers.map((tier, index) => (
             <motion.div
               key={tier.name}
