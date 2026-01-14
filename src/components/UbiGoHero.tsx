@@ -61,13 +61,13 @@ export function UbiGoHero() {
             className="hidden lg:block relative"
           >
              <div className="relative z-20 rounded-3xl overflow-hidden border-8 border-zinc-900 shadow-2xl">
-                <Image 
-                  src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop" 
-                  alt="UbiGo Ride"
-                  width={800}
-                  height={1000}
-                  className="w-full h-full object-cover"
-                />
+                  <Image 
+                    src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/20d9c869-8da0-4255-9e75-670095d3e726/MOTOUBIGO-1768390783964.jpg?width=8000&height=8000&resize=contain" 
+                    alt="UbiGo Ride"
+                    width={800}
+                    height={1000}
+                    className="w-full h-full object-cover"
+                  />
              </div>
              {/* Floating badge */}
              <div className="absolute -bottom-6 -left-6 bg-red-600 text-white p-6 rounded-2xl shadow-xl z-30">
