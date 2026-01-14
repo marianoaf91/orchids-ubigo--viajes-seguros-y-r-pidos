@@ -87,7 +87,7 @@ export function UbiGoFooter() {
         </div>
 
         <div className="text-center pt-8 border-t border-zinc-800 text-zinc-600 text-sm">
-          <p>© 2024 UbiGo! Inc. Todos los derechos reservados.</p>
+          <p>© 2026 UbiGo! Inc. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
