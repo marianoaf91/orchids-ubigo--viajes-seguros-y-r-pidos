@@ -30,7 +30,7 @@ export function UbiGoNavbar() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
             <DropdownMenu>
-              <DropdownMenuTrigger className="text-white hover:text-red-500 flex items-center gap-1 transition-colors font-medium">
+              <DropdownMenuTrigger className="text-white hover:text-red-500 flex items-center gap-1 transition-colors font-medium outline-none">
                 Servicios <ChevronDown size={16} />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-black border-zinc-800 text-white min-w-[200px]">
@@ -79,7 +79,7 @@ export function UbiGoNavbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-zinc-900 border-b border-zinc-800"
+            className="md:hidden bg-zinc-900 border-b border-zinc-800 overflow-hidden"
           >
             <div className="px-4 pt-2 pb-6 space-y-2">
               <Link href="#" className="block px-3 py-4 text-lg font-medium text-white border-b border-zinc-800">Viajes en moto</Link>
