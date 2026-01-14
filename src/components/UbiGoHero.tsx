@@ -69,11 +69,28 @@ export function UbiGoHero() {
                     className="w-full h-full object-cover"
                   />
              </div>
-             {/* Floating badge */}
-                 <div className="absolute -bottom-6 -left-6 bg-red-600 text-white p-6 rounded-2xl shadow-xl z-30">
-                    <p className="text-3xl font-black">UBICUIDAD</p>
-                    <p className="text-sm font-medium opacity-80 uppercase tracking-tighter">Atención Constante a su Servicio</p>
+               {/* Floating badge */}
+               <motion.div 
+                 initial={{ y: 20, opacity: 0 }}
+                 animate={{ y: 0, opacity: 1 }}
+                 transition={{ delay: 1, duration: 0.5 }}
+                 className="absolute -bottom-6 -left-6 bg-red-600 text-white p-6 rounded-2xl shadow-[0_20px_50px_rgba(220,38,38,0.3)] z-30 overflow-hidden"
+               >
+                 <div className="relative z-10">
+                   <p className="text-3xl font-black italic tracking-tighter leading-none mb-1">SIEMPRE EN MOVIMIENTO</p>
+                   <div className="h-1 w-12 bg-white mb-2" />
+                   <p className="text-xs font-bold uppercase tracking-[0.2em] opacity-90">Servicio Ininterrumpido</p>
                  </div>
+                 {/* Decorative background element for the badge */}
+                 <motion.div 
+                   animate={{ 
+                     x: [0, 10, 0],
+                     opacity: [0.1, 0.2, 0.1] 
+                   }}
+                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                   className="absolute top-0 right-0 w-full h-full bg-white/10 skew-x-12 transform translate-x-1/2"
+                 />
+               </motion.div>
           </motion.div>
         </div>
       </div>
