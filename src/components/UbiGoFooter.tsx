@@ -34,7 +34,7 @@ export function UbiGoFooter() {
                 </div>
                 <div>
                   <p className="text-zinc-500 text-sm">Email</p>
-                    <p className="font-bold">UbiGo.madrid@gmail.com</p>
+                    <p className="font-bold">ubigo.madrid@gmail.com</p>
                 </div>
               </div>
             </div>
