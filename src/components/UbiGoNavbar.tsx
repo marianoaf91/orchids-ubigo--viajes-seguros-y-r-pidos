@@ -87,11 +87,16 @@ export function UbiGoNavbar() {
               <Link href="#" className="block px-3 py-4 text-lg font-medium text-white border-b border-zinc-800">Reservar un viaje</Link>
               <Link href="#" className="block px-3 py-4 text-lg font-medium text-white border-b border-zinc-800">Tarifa de precios</Link>
               <Link href="#contacto" className="block px-3 py-4 text-lg font-medium text-white">Contacto</Link>
-              <div className="pt-4">
-                <Button className="w-full bg-red-600 hover:bg-red-700 text-white py-6 text-xl font-bold">
-                  Comenzar
-                </Button>
-              </div>
+                <div className="pt-4 space-y-2">
+                  <Link href="/login">
+                    <Button variant="outline" className="w-full border-zinc-700 text-white py-6 text-xl font-bold hover:bg-zinc-800">
+                      INICIO DE SESIÓN
+                    </Button>
+                  </Link>
+                  <Button className="w-full bg-red-600 hover:bg-red-700 text-white py-6 text-xl font-bold">
+                    Registrarse
+                  </Button>
+                </div>
             </div>
           </motion.div>
         )}
