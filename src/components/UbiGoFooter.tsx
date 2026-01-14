@@ -40,13 +40,13 @@ export function UbiGoFooter() {
             </div>
 
             <div className="flex gap-4">
-              <Button variant="outline" className="rounded-full w-12 h-12 p-0 border-zinc-700 hover:bg-red-600 hover:border-red-600">
+              <Button variant="outline" className="rounded-full w-12 h-12 p-0 border-red-600 text-red-600 hover:bg-red-600 hover:text-white hover:border-red-600 transition-colors">
                 <Instagram size={20} />
               </Button>
-              <Button variant="outline" className="rounded-full w-12 h-12 p-0 border-zinc-700 hover:bg-red-600 hover:border-red-600">
+              <Button variant="outline" className="rounded-full w-12 h-12 p-0 border-red-600 text-red-600 hover:bg-red-600 hover:text-white hover:border-red-600 transition-colors">
                 <Twitter size={20} />
               </Button>
-              <Button variant="outline" className="rounded-full w-12 h-12 p-0 border-zinc-700 hover:bg-red-600 hover:border-red-600">
+              <Button variant="outline" className="rounded-full w-12 h-12 p-0 border-red-600 text-red-600 hover:bg-red-600 hover:text-white hover:border-red-600 transition-colors">
                 <Facebook size={20} />
               </Button>
             </div>
