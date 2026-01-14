@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { Bike, ShieldCheck, Clock, Zap } from "lucide-react"
+import { motion } from "framer-motion"
 
 const pricingTiers = [
   {
