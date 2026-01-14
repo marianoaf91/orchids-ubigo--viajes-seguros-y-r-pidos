@@ -1,37 +1,36 @@
 "use client"
 
 import * as React from "react"
-import { Car, ShieldCheck, Clock, Zap } from "lucide-react"
-import { motion } from "framer-motion"
+import { Bike, ShieldCheck, Clock, Zap } from "lucide-react"
 
 const pricingTiers = [
   {
     name: "UbiGo Basic",
     description: "Viajes económicos y confiables.",
-    price: "$5.00",
-    icon: <Car size={24} className="text-red-600" />,
-    features: ["Capacidad: 4 personas", "Tiempo espera: 5 min", "Autos estándar"]
+    price: "5.00€",
+    icon: <Bike size={24} className="text-red-600" />,
+    features: ["Capacidad: 1 persona", "Tiempo espera: 5 min", "Motos estándar"]
   },
   {
     name: "UbiGo Comfort",
     description: "Espacio extra y conductores mejor calificados.",
-    price: "$8.50",
+    price: "8.50€",
     icon: <Zap size={24} className="text-red-600" />,
-    features: ["Capacidad: 4 personas", "Aire acondicionado", "Autos nuevos"]
+    features: ["Capacidad: 1 persona", "Casco premium incluido", "Motos nuevas"]
   },
   {
     name: "UbiGo Black",
     description: "La experiencia premium definitiva.",
-    price: "$15.00",
+    price: "15.00€",
     icon: <ShieldCheck size={24} className="text-red-600" />,
-    features: ["Capacidad: 4 personas", "Autos de lujo", "Agua y snacks"]
+    features: ["Capacidad: 1 persona", "Motos de lujo", "Chaqueta de protección"]
   },
   {
     name: "UbiGo XL",
-    description: "Para grupos grandes o mucho equipaje.",
-    price: "$12.00",
+    description: "Para viajes con maleta pequeña o más potencia.",
+    price: "12.00€",
     icon: <Clock size={24} className="text-red-600" />,
-    features: ["Capacidad: 6 personas", "Espacio para maletas", "Viajes grupales"]
+    features: ["Capacidad: 1 persona", "Espacio para maleta", "Motor de alta cilindrada"]
   }
 ]
 
