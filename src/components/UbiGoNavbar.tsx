@@ -28,32 +28,37 @@ export function UbiGoNavbar() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
-            <DropdownMenu>
-              <DropdownMenuTrigger className="text-white hover:text-red-500 flex items-center gap-1 transition-colors font-medium">
-                Servicios <ChevronDown size={16} />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-black border-zinc-800 text-white min-w-[200px]">
-                <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
-                  <Car size={18} className="text-red-600" /> Viajes
-                </DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
-                  <MapPin size={18} className="text-red-600" /> Solicitar un viaje
-                </DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
-                  <Calendar size={18} className="text-red-600" /> Reservar un viaje
-                </DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
-                  <DollarSign size={18} className="text-red-600" /> Ver tarifa de precios
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Link href="#precios" className="text-white hover:text-red-500 transition-colors font-medium">Precios</Link>
-            <Link href="#contacto" className="text-white hover:text-red-500 transition-colors font-medium">Contacto</Link>
-            <Button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 font-bold">
-              Registrarse
-            </Button>
-          </div>
+            <div className="hidden md:flex items-center gap-8">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="text-white hover:text-red-500 flex items-center gap-1 transition-colors font-medium">
+                  Servicios <ChevronDown size={16} />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-black border-zinc-800 text-white min-w-[200px]">
+                  <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
+                    <Car size={18} className="text-red-600" /> Viajes
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
+                    <MapPin size={18} className="text-red-600" /> Solicitar un viaje
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
+                    <Calendar size={18} className="text-red-600" /> Reservar un viaje
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
+                    <DollarSign size={18} className="text-red-600" /> Ver tarifa de precios
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Link href="#precios" className="text-white hover:text-red-500 transition-colors font-medium">Precios</Link>
+              <Link href="#contacto" className="text-white hover:text-red-500 transition-colors font-medium">Contacto</Link>
+              <Link href="/login">
+                <Button variant="ghost" className="text-white hover:text-red-500 hover:bg-transparent font-bold">
+                  INICIO DE SESIÓN
+                </Button>
+              </Link>
+              <Button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 font-bold">
+                Registrarse
+              </Button>
+            </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
