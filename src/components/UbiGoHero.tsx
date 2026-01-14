@@ -25,7 +25,7 @@ export function UbiGoHero() {
               <span className="text-red-600">Libertad.</span>
             </h1>
             <p className="text-xl text-zinc-400 mb-10 max-w-lg leading-relaxed">
-              La forma más rápida y segura de moverte por la ciudad. UbiGo! te conecta con conductores en minutos.
+                La forma más rápida y segura de moverte por Madrid. UbiGo! te conecta con conductores en minutos.
             </p>
 
             <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md">
