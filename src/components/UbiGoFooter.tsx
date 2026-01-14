@@ -15,9 +15,9 @@ export function UbiGoFooter() {
             <div>
               <h2 className="text-4xl font-black mb-6">Contacta con <span className="text-red-600">Nosotros</span></h2>
                   <div className="mb-10 group">
-                    <p className="text-zinc-400 leading-relaxed mb-4">
-                      ¿Tienes alguna duda o necesitas ayuda con un viaje? Nuestro equipo garantiza un compromiso ininterrumpido.
-                    </p>
+                      <p className="text-zinc-400 leading-relaxed mb-4">
+                        ¿Tienes alguna duda o necesitas ayuda con un viaje? Nuestro equipo garantiza un compromiso 24 horas.
+                      </p>
                     <div className="inline-flex items-center gap-2 bg-red-600/10 border border-red-600/20 px-4 py-2 rounded-full">
                       <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
                       <span className="text-red-600 font-black italic text-sm tracking-widest">SIEMPRE EN MOVIMIENTO</span>
