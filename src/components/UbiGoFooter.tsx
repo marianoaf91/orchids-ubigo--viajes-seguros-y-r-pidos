@@ -14,9 +14,9 @@ export function UbiGoFooter() {
           {/* Contact Section */}
           <div>
             <h2 className="text-4xl font-black mb-6">Contacta con <span className="text-red-600">Nosotros</span></h2>
-              <p className="text-zinc-400 mb-10 leading-relaxed">
-                ¿Tienes alguna duda o necesitas ayuda con un viaje? Nuestro equipo mantiene un compromiso ininterrumpido para asistirte en todo momento.
-              </p>
+                <p className="text-zinc-400 mb-10 leading-relaxed">
+                  ¿Tienes alguna duda o necesitas ayuda con un viaje? Nuestro equipo garantiza una asistencia ininterrumpida, velando por su movilidad con la máxima profesionalidad.
+                </p>
             
             <div className="space-y-6 mb-12">
               <div className="flex items-center gap-4">
