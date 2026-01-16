@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ShieldCheck, CreditCard, Lock, Phone, Mail, MapPin, Instagram, Twitter, Facebook } from "lucide-react"
+import { ShieldCheck, CreditCard, Lock, Phone, Mail, Instagram, Twitter, Facebook } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
