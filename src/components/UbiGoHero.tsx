@@ -91,6 +91,31 @@ export function UbiGoHero() {
   const [showModal, setShowModal] = useState(false)
   const [priceResult, setPriceResult] = useState<PriceResult | null>(null)
   const [error, setError] = useState("")
+  const [selectedTier, setSelectedTier] = useState<SelectedTier | null>(null)
+  const [assignedDriver, setAssignedDriver] = useState<Driver | null>(null)
+  const [confirmed, setConfirmed] = useState(false)
+
+  const selectTier = (tier: SelectedTier) => {
+    setSelectedTier(tier)
+    const randomDriver = drivers[Math.floor(Math.random() * drivers.length)]
+    setAssignedDriver(randomDriver)
+  }
+
+  const goBackToTiers = () => {
+    setSelectedTier(null)
+    setAssignedDriver(null)
+  }
+
+  const confirmTrip = () => {
+    setConfirmed(true)
+  }
+
+  const closeModal = () => {
+    setShowModal(false)
+    setSelectedTier(null)
+    setAssignedDriver(null)
+    setConfirmed(false)
+  }
 
   const calculatePrices = async () => {
     if (!origin.trim() || !destination.trim()) {
