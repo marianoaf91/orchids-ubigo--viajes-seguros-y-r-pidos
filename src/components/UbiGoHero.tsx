@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { MapPin, Navigation, ArrowRight, X, Bike, Zap, Loader2 } from "lucide-react"
+import { MapPin, Navigation, ArrowRight, X, Bike, Zap, Loader2, Star, Phone, ChevronLeft } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
@@ -28,6 +28,33 @@ const pricingTiers = [
   }
 ]
 
+const drivers = [
+  {
+    name: "Carlos Martínez",
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
+    rating: 4.9,
+    trips: 1247,
+    plate: "1234 GHT",
+    bike: "Honda PCX 125"
+  },
+  {
+    name: "Miguel Ángel López",
+    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face",
+    rating: 4.8,
+    trips: 892,
+    plate: "5678 BCD",
+    bike: "Yamaha NMAX 125"
+  },
+  {
+    name: "David García",
+    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face",
+    rating: 4.95,
+    trips: 2103,
+    plate: "9012 KLM",
+    bike: "Kymco Agility 125"
+  }
+]
+
 interface PriceResult {
   distance: number
   duration: number
@@ -39,6 +66,22 @@ interface PriceResult {
     features: string[]
     description: string
   }[]
+}
+
+interface SelectedTier {
+  id: string
+  name: string
+  price: number
+  icon: React.ReactNode
+}
+
+interface Driver {
+  name: string
+  photo: string
+  rating: number
+  trips: number
+  plate: string
+  bike: string
 }
 
 export function UbiGoHero() {
