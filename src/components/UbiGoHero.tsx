@@ -273,7 +273,7 @@ export function UbiGoHero() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            onClick={() => setShowModal(false)}
+            onClick={closeModal}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -283,69 +283,210 @@ export function UbiGoHero() {
               className="bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl relative"
             >
               <button
-                onClick={() => setShowModal(false)}
+                onClick={closeModal}
                 className="absolute top-4 right-4 p-2 hover:bg-zinc-100 rounded-full transition-colors"
               >
                 <X size={24} className="text-zinc-500" />
               </button>
 
-              <h2 className="text-2xl font-black text-black mb-2">Tu viaje</h2>
-              
-              <div className="bg-zinc-100 rounded-xl p-4 mb-6">
-                <div className="flex items-start gap-3 mb-3">
-                  <MapPin size={18} className="text-red-600 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-xs text-zinc-500 uppercase tracking-wide">Origen</p>
-                    <p className="text-black font-medium">{origin}</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Navigation size={18} className="text-zinc-400 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-xs text-zinc-500 uppercase tracking-wide">Destino</p>
-                    <p className="text-black font-medium">{destination}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex gap-4 mb-6">
-                <div className="bg-red-50 rounded-xl p-4 flex-1 text-center">
-                  <p className="text-3xl font-black text-red-600">{priceResult.distance} km</p>
-                  <p className="text-xs text-zinc-500 uppercase tracking-wide">Distancia</p>
-                </div>
-                <div className="bg-zinc-100 rounded-xl p-4 flex-1 text-center">
-                  <p className="text-3xl font-black text-black">{priceResult.duration} min</p>
-                  <p className="text-xs text-zinc-500 uppercase tracking-wide">Duración aprox.</p>
-                </div>
-              </div>
-
-              <h3 className="font-bold text-black mb-4">Elige tu tarifa</h3>
-              
-              <div className="space-y-3">
-                {priceResult.prices.map((tier) => (
-                  <div
-                    key={tier.id}
-                    className="border-2 border-zinc-200 hover:border-red-600 rounded-xl p-4 cursor-pointer transition-colors group"
+              <AnimatePresence mode="wait">
+                {confirmed ? (
+                  <motion.div
+                    key="confirmed"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="text-center py-8"
                   >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="bg-zinc-100 group-hover:bg-red-50 w-12 h-12 rounded-xl flex items-center justify-center transition-colors">
-                          {tier.icon}
-                        </div>
-                        <div>
-                          <p className="font-bold text-black">{tier.name}</p>
-                          <p className="text-xs text-zinc-500">{tier.description}</p>
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", delay: 0.2 }}
+                      className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6"
+                    >
+                      <motion.svg
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                        className="w-10 h-10 text-green-600"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={3}
+                      >
+                        <motion.path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </motion.svg>
+                    </motion.div>
+                    <h2 className="text-2xl font-black text-black mb-2">¡Viaje Confirmado!</h2>
+                    <p className="text-zinc-500 mb-6">Tu conductor está en camino</p>
+                    
+                    {assignedDriver && (
+                      <div className="bg-zinc-100 rounded-xl p-4 mb-6">
+                        <div className="flex items-center gap-4">
+                          <Image
+                            src={assignedDriver.photo}
+                            alt={assignedDriver.name}
+                            width={60}
+                            height={60}
+                            className="rounded-full object-cover"
+                          />
+                          <div className="text-left">
+                            <p className="font-bold text-black">{assignedDriver.name}</p>
+                            <p className="text-lg font-black text-red-600">{assignedDriver.plate}</p>
+                          </div>
                         </div>
                       </div>
-                      <p className="text-2xl font-black text-black">{tier.price.toFixed(2)}€</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                    )}
 
-              <p className="text-xs text-zinc-400 text-center mt-6">
-                Precios estimados. El precio final puede variar según el tráfico.
-              </p>
+                    <p className="text-sm text-zinc-400">
+                      Tiempo estimado de llegada: <span className="font-bold text-black">3-5 min</span>
+                    </p>
+                  </motion.div>
+                ) : selectedTier && assignedDriver ? (
+                  <motion.div
+                    key="driver"
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                  >
+                    <button
+                      onClick={goBackToTiers}
+                      className="flex items-center gap-1 text-zinc-500 hover:text-black transition-colors mb-4"
+                    >
+                      <ChevronLeft size={20} />
+                      <span className="text-sm">Volver</span>
+                    </button>
+
+                    <h2 className="text-2xl font-black text-black mb-2">Tu conductor</h2>
+                    <p className="text-zinc-500 mb-6">Listo para llevarte a tu destino</p>
+
+                    <div className="bg-zinc-100 rounded-2xl p-6 mb-6">
+                      <div className="flex items-center gap-4 mb-4">
+                        <Image
+                          src={assignedDriver.photo}
+                          alt={assignedDriver.name}
+                          width={80}
+                          height={80}
+                          className="rounded-full object-cover border-4 border-white shadow-lg"
+                        />
+                        <div>
+                          <p className="font-bold text-black text-lg">{assignedDriver.name}</p>
+                          <div className="flex items-center gap-1">
+                            <Star size={16} className="text-yellow-500 fill-yellow-500" />
+                            <span className="font-bold text-black">{assignedDriver.rating}</span>
+                            <span className="text-zinc-400 text-sm">({assignedDriver.trips} viajes)</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="bg-white rounded-xl p-3">
+                          <p className="text-xs text-zinc-400 uppercase tracking-wide mb-1">Matrícula</p>
+                          <p className="font-black text-black text-lg">{assignedDriver.plate}</p>
+                        </div>
+                        <div className="bg-white rounded-xl p-3">
+                          <p className="text-xs text-zinc-400 uppercase tracking-wide mb-1">Vehículo</p>
+                          <p className="font-bold text-black text-sm">{assignedDriver.bike}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-red-50 rounded-xl p-4 mb-6 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-red-100 w-10 h-10 rounded-xl flex items-center justify-center">
+                          {selectedTier.icon}
+                        </div>
+                        <div>
+                          <p className="font-bold text-black">{selectedTier.name}</p>
+                          <p className="text-xs text-zinc-500">{priceResult.distance} km · {priceResult.duration} min</p>
+                        </div>
+                      </div>
+                      <p className="text-2xl font-black text-black">{selectedTier.price.toFixed(2)}€</p>
+                    </div>
+
+                    <Button
+                      onClick={confirmTrip}
+                      className="w-full h-14 bg-red-600 hover:bg-red-700 text-white font-bold text-lg rounded-xl transition-transform active:scale-95"
+                    >
+                      Confirmar Viaje
+                    </Button>
+
+                    <p className="text-xs text-zinc-400 text-center mt-4">
+                      Al confirmar, aceptas nuestros términos y condiciones
+                    </p>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="pricing"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, x: -50 }}
+                  >
+                    <h2 className="text-2xl font-black text-black mb-2">Tu viaje</h2>
+                    
+                    <div className="bg-zinc-100 rounded-xl p-4 mb-6">
+                      <div className="flex items-start gap-3 mb-3">
+                        <MapPin size={18} className="text-red-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-xs text-zinc-500 uppercase tracking-wide">Origen</p>
+                          <p className="text-black font-medium">{origin}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Navigation size={18} className="text-zinc-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-xs text-zinc-500 uppercase tracking-wide">Destino</p>
+                          <p className="text-black font-medium">{destination}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4 mb-6">
+                      <div className="bg-red-50 rounded-xl p-4 flex-1 text-center">
+                        <p className="text-3xl font-black text-red-600">{priceResult.distance} km</p>
+                        <p className="text-xs text-zinc-500 uppercase tracking-wide">Distancia</p>
+                      </div>
+                      <div className="bg-zinc-100 rounded-xl p-4 flex-1 text-center">
+                        <p className="text-3xl font-black text-black">{priceResult.duration} min</p>
+                        <p className="text-xs text-zinc-500 uppercase tracking-wide">Duración aprox.</p>
+                      </div>
+                    </div>
+
+                    <h3 className="font-bold text-black mb-4">Elige tu tarifa</h3>
+                    
+                    <div className="space-y-3">
+                      {priceResult.prices.map((tier) => (
+                        <div
+                          key={tier.id}
+                          onClick={() => selectTier({ id: tier.id, name: tier.name, price: tier.price, icon: tier.icon })}
+                          className="border-2 border-zinc-200 hover:border-red-600 rounded-xl p-4 cursor-pointer transition-colors group"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <div className="bg-zinc-100 group-hover:bg-red-50 w-12 h-12 rounded-xl flex items-center justify-center transition-colors">
+                                {tier.icon}
+                              </div>
+                              <div>
+                                <p className="font-bold text-black">{tier.name}</p>
+                                <p className="text-xs text-zinc-500">{tier.description}</p>
+                              </div>
+                            </div>
+                            <p className="text-2xl font-black text-black">{tier.price.toFixed(2)}€</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <p className="text-xs text-zinc-400 text-center mt-6">
+                      Precios estimados. El precio final puede variar según el tráfico.
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           </motion.div>
         )}
