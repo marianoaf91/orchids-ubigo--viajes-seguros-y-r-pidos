@@ -1,13 +1,10 @@
 "use client"
 
 import Image from "next/image"
-import { ArrowRight } from "lucide-react"
+import { MapPin, Navigation, ArrowRight } from "lucide-react"
+import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
-import { LoadScript } from "@react-google-maps/api"
-import { PlacesAutocomplete } from "./PlacesAutocomplete"
-
-const libraries: ("places")[] = ["places"]
 
 export function UbiGoHero() {
   return (
@@ -31,35 +28,30 @@ export function UbiGoHero() {
                 La forma más rápida y segura de moverte por Madrid. UbiGo! te conecta con conductores en minutos.
             </p>
 
-            <LoadScript
-              googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
-              libraries={libraries}
-            >
-              <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md">
-                <h3 className="text-black text-2xl font-bold mb-6 flex items-center gap-2">
-                  ¿A dónde vamos hoy?
-                </h3>
-                <div className="space-y-4">
-                  <PlacesAutocomplete
-                    placeholder="Ubicación de origen"
-                    icon="origin"
-                    onSelect={(address, lat, lng) => {
-                      console.log("Origen:", address, lat, lng)
-                    }}
+            <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md">
+              <h3 className="text-black text-2xl font-bold mb-6 flex items-center gap-2">
+                ¿A dónde vamos hoy?
+              </h3>
+              <div className="space-y-4">
+                <div className="relative">
+                  <MapPin className="absolute left-3 top-3.5 text-red-600" size={20} />
+                  <Input 
+                    placeholder="Ubicación de origen" 
+                    className="pl-10 h-14 bg-zinc-100 border-none rounded-xl text-black focus-visible:ring-red-600"
                   />
-                  <PlacesAutocomplete
-                    placeholder="Destino"
-                    icon="destination"
-                    onSelect={(address, lat, lng) => {
-                      console.log("Destino:", address, lat, lng)
-                    }}
-                  />
-                  <Button className="w-full h-14 bg-black hover:bg-zinc-800 text-white font-bold text-lg rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-95">
-                    Ver Precios <ArrowRight size={20} />
-                  </Button>
                 </div>
+                <div className="relative">
+                  <Navigation className="absolute left-3 top-3.5 text-zinc-400" size={20} />
+                  <Input 
+                    placeholder="Destino" 
+                    className="pl-10 h-14 bg-zinc-100 border-none rounded-xl text-black focus-visible:ring-red-600"
+                  />
+                </div>
+                <Button className="w-full h-14 bg-black hover:bg-zinc-800 text-white font-bold text-lg rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-95">
+                  Ver Precios <ArrowRight size={20} />
+                </Button>
               </div>
-            </LoadScript>
+            </div>
           </motion.div>
 
           <motion.div
@@ -105,4 +97,3 @@ export function UbiGoHero() {
     </section>
   )
 }
-
