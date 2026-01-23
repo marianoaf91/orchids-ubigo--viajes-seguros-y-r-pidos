@@ -26,9 +26,9 @@ export function UbiGoPricing() {
     <section id="precios" className="py-24 bg-zinc-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-black text-black mb-4">Nuestras Tarifas</h2>
+          <h2 className="text-4xl font-black text-black mb-4">Tarifas de Reserva</h2>
           <p className="text-zinc-600 max-w-2xl mx-auto">
-            Elige el servicio que mejor se adapte a tus necesidades en Madrid. Precios transparentes y sin sorpresas.
+            Planifica tu transporte personal en Madrid con total transparencia. Reserva con antelación y asegura tu viaje al mejor precio.
           </p>
         </div>
 
