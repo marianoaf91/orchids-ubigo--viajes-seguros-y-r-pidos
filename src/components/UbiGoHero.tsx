@@ -322,30 +322,30 @@ export function UbiGoHero() {
                         />
                       </motion.svg>
                     </motion.div>
-                    <h2 className="text-2xl font-black text-black mb-2">¡Viaje Confirmado!</h2>
-                    <p className="text-zinc-500 mb-6">Tu conductor está en camino</p>
-                    
-                    {assignedDriver && (
-                      <div className="bg-zinc-100 rounded-xl p-4 mb-6">
-                        <div className="flex items-center gap-4">
-                          <Image
-                            src={assignedDriver.photo}
-                            alt={assignedDriver.name}
-                            width={60}
-                            height={60}
-                            className="rounded-full object-cover"
-                          />
-                          <div className="text-left">
-                            <p className="font-bold text-black">{assignedDriver.name}</p>
-                            <p className="text-lg font-black text-red-600">{assignedDriver.plate}</p>
+                      <h2 className="text-2xl font-black text-black mb-2">¡Reserva Confirmada!</h2>
+                      <p className="text-zinc-500 mb-6">Tu transporte ha sido programado</p>
+                      
+                      {assignedDriver && (
+                        <div className="bg-zinc-100 rounded-xl p-4 mb-6">
+                          <div className="flex items-center gap-4">
+                            <Image
+                              src={assignedDriver.photo}
+                              alt={assignedDriver.name}
+                              width={60}
+                              height={60}
+                              className="rounded-full object-cover"
+                            />
+                            <div className="text-left">
+                              <p className="font-bold text-black">{assignedDriver.name}</p>
+                              <p className="text-lg font-black text-red-600">{assignedDriver.plate}</p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                    <p className="text-sm text-zinc-400">
-                      Tiempo estimado de llegada: <span className="font-bold text-black">3-5 min</span>
-                    </p>
+                      <p className="text-sm text-zinc-400">
+                        Recibirás un recordatorio <span className="font-bold text-black">15 minutos antes</span> de la recogida.
+                      </p>
                   </motion.div>
                 ) : selectedTier && assignedDriver ? (
                   <motion.div
