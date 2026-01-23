@@ -184,25 +184,26 @@ export function UbiGoHero() {
                 <h3 className="text-black text-2xl font-bold mb-6 flex items-center gap-2">
                   ¿A dónde vamos hoy?
                 </h3>
-                <div className="space-y-4">
-                  <div className="relative">
-                    <MapPin className="absolute left-3 top-3.5 text-red-600" size={20} />
-                    <Input 
-                      placeholder="Ubicación de origen" 
-                      className="pl-10 h-14 bg-zinc-100 border-none rounded-xl text-black focus-visible:ring-red-600"
-                      value={origin}
-                      onChange={(e) => setOrigin(e.target.value)}
-                    />
-                  </div>
-                  <div className="relative">
-                    <Navigation className="absolute left-3 top-3.5 text-zinc-400" size={20} />
-                    <Input 
-                      placeholder="Destino" 
-                      className="pl-10 h-14 bg-zinc-100 border-none rounded-xl text-black focus-visible:ring-red-600"
-                      value={destination}
-                      onChange={(e) => setDestination(e.target.value)}
-                    />
-                  </div>
+                  <div className="space-y-4">
+                    <div className="relative">
+                      <MapPin className="absolute left-3 top-3.5 text-red-600" size={20} />
+                      <Input 
+                        placeholder="Calle de origen" 
+                        className="pl-10 h-14 bg-zinc-100 border-none rounded-xl text-black focus-visible:ring-red-600"
+                        value={origin}
+                        onChange={(e) => setOrigin(e.target.value)}
+                      />
+                    </div>
+                    <div className="relative">
+                      <Navigation className="absolute left-3 top-3.5 text-zinc-400" size={20} />
+                      <Input 
+                        placeholder="Calle de destino" 
+                        className="pl-10 h-14 bg-zinc-100 border-none rounded-xl text-black focus-visible:ring-red-600"
+                        value={destination}
+                        onChange={(e) => setDestination(e.target.value)}
+                      />
+                    </div>
+
                   {error && (
                     <p className="text-red-600 text-sm">{error}</p>
                   )}
