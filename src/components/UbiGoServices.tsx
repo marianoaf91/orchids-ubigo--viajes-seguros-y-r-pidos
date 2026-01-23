@@ -9,12 +9,12 @@ import { Button } from "@/components/ui/button"
 
 const services = [
   {
-    id: "envios",
-    icon: <Package className="w-5 h-5" />,
-    title: "Envíos Flash",
-    description: "Envía paquetes pequeños de forma rápida y económica por toda la ciudad.",
-    features: ["Entrega en menos de 30 min", "Gestión de documentos", "Paquetería ligera", "Prueba de entrega digital"],
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+    id: "inmediato",
+    icon: <Clock className="w-5 h-5" />,
+    title: "Viaje Inmediato",
+    description: "Solicita un conductor en segundos y llega a tu destino sin esperas.",
+    features: ["Llegada en < 5 min", "Seguimiento en tiempo real", "Conductores verificados", "Pago automático"],
+    image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=800",
   },
   {
     id: "reservas",
