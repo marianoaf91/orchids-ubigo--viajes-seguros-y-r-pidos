@@ -9,18 +9,10 @@ import { Button } from "@/components/ui/button"
 
 const services = [
   {
-    id: "inmediato",
-    icon: <Clock className="w-5 h-5" />,
-    title: "Viaje Inmediato",
-    description: "Solicita un conductor en segundos y llega a tu destino sin esperas.",
-    features: ["Llegada en < 5 min", "Seguimiento en tiempo real", "Conductores verificados", "Pago automático"],
-    image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=800",
-  },
-  {
     id: "reservas",
     icon: <Calendar className="w-5 h-5" />,
     title: "Reservas",
-    description: "Planifica tus traslados con antelación y asegura tu transporte.",
+    description: "Planifica tus traslados con antelación y asegura tu transporte con los mejores conductores.",
     features: ["Agenda hasta con 7 días", "Prioridad de asignación", "Recordatorios vía app", "Cancelación flexible"],
     image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=800",
   },
@@ -50,7 +42,7 @@ export function UbiGoServices() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-black text-white mt-4 mb-6 tracking-tighter"
           >
-            Todo lo que necesitas para <br /> <span className="text-red-600">moverte por la ciudad</span>
+            Reserva tu transporte <br /> <span className="text-red-600">con antelación</span>
           </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -59,12 +51,12 @@ export function UbiGoServices() {
               transition={{ delay: 0.2 }}
               className="text-zinc-400 text-lg max-w-2xl mx-auto"
             >
-              UbiGo! es la plataforma de movilidad líder en dos ruedas, diseñada para moverte rápido por la ciudad.
+              UbiGo! se enfoca exclusivamente en el transporte de personas mediante reservas, garantizando puntualidad y seguridad.
             </motion.p>
         </div>
 
-          <Tabs defaultValue="inmediato" className="w-full">
-          <div className="flex justify-center mb-12">
+          <Tabs defaultValue="reservas" className="w-full">
+          <div className="hidden">
             <TabsList className="bg-zinc-900/50 border border-zinc-800 p-1 h-auto flex-wrap justify-center sm:flex-nowrap">
               {services.map((service) => (
                 <TabsTrigger 
@@ -99,7 +91,7 @@ export function UbiGoServices() {
                     <div className="absolute bottom-6 left-6">
                       <div className="flex items-center gap-2 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">
                         <Star size={14} fill="currentColor" />
-                        Servicio Premium
+                        Servicio de Reservas
                       </div>
                     </div>
                   </div>
@@ -126,7 +118,7 @@ export function UbiGoServices() {
 
                   <div className="pt-4 flex flex-col sm:flex-row gap-4">
                     <Button className="bg-red-600 hover:bg-red-700 text-white font-bold h-14 px-8 rounded-xl text-lg group">
-                      Comenzar ahora
+                      Reservar ahora
                       <motion.span
                         animate={{ x: [0, 5, 0] }}
                         transition={{ repeat: Infinity, duration: 1.5 }}
