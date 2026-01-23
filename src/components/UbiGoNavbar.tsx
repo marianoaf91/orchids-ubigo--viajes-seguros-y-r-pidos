@@ -65,7 +65,29 @@ export function UbiGoNavbar() {
             className="md:hidden bg-zinc-900 border-b border-zinc-800 overflow-hidden"
           >
             <div className="px-4 pt-2 pb-6 space-y-2">
-              <div className="pt-4 space-y-2">
+                <Link
+                  href="#servicios"
+                  className="block px-3 py-4 text-xl font-bold text-zinc-400 hover:text-white border-b border-zinc-800"
+                  onClick={() => setIsOpen(false)}
+                >
+                  SERVICIOS
+                </Link>
+                <Link
+                  href="#precios"
+                  className="block px-3 py-4 text-xl font-bold text-zinc-400 hover:text-white border-b border-zinc-800"
+                  onClick={() => setIsOpen(false)}
+                >
+                  PRECIOS
+                </Link>
+                <Link
+                  href="#contacto"
+                  className="block px-3 py-4 text-xl font-bold text-zinc-400 hover:text-white border-b border-zinc-800"
+                  onClick={() => setIsOpen(false)}
+                >
+                  CONTACTO
+                </Link>
+                <div className="pt-4 space-y-2">
+
                 <Link href="/login" onClick={() => setIsOpen(false)}>
                   <Button variant="outline" className="w-full border-zinc-700 text-white py-6 text-xl font-bold hover:bg-zinc-800">
                     INICIO DE SESIÓN
