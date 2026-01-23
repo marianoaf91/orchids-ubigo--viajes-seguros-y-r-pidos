@@ -63,7 +63,7 @@ export function UbiGoServices() {
             </motion.p>
         </div>
 
-        <Tabs defaultValue="envios" className="w-full">
+          <Tabs defaultValue="inmediato" className="w-full">
           <div className="flex justify-center mb-12">
             <TabsList className="bg-zinc-900/50 border border-zinc-800 p-1 h-auto flex-wrap justify-center sm:flex-nowrap">
               {services.map((service) => (
