@@ -2,14 +2,8 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { Menu, X, Bike, Calendar, DollarSign, MapPin, ChevronDown } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { motion, AnimatePresence } from "framer-motion"
 
 export function UbiGoNavbar() {
@@ -27,16 +21,16 @@ export function UbiGoNavbar() {
             </Link>
           </div>
 
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/login">
-                <Button variant="ghost" className="text-white hover:text-red-500 hover:bg-transparent font-bold">
-                  INICIO DE SESIÓN
-                </Button>
-              </Link>
-              <Button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 font-bold">
-                Registrarse
+          <div className="hidden md:flex items-center gap-8">
+            <Link href="/login">
+              <Button variant="ghost" className="text-white hover:text-red-500 hover:bg-transparent font-bold">
+                INICIO DE SESIÓN
               </Button>
-            </div>
+            </Link>
+            <Button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 font-bold">
+              Registrarse
+            </Button>
+          </div>
 
           <div className="md:hidden">
             <button
@@ -58,17 +52,13 @@ export function UbiGoNavbar() {
             className="md:hidden bg-zinc-900 border-b border-zinc-800 overflow-hidden"
           >
             <div className="px-4 pt-2 pb-6 space-y-2">
-                <Link href="#" className="block px-3 py-4 text-lg font-medium text-white border-b border-zinc-800">Solicitar una moto</Link>
-              <Link href="#" className="block px-3 py-4 text-lg font-medium text-white border-b border-zinc-800">Reservar una moto</Link>
-              <Link href="#" className="block px-3 py-4 text-lg font-medium text-white border-b border-zinc-800">Tarifas</Link>
-              <Link href="#contacto" className="block px-3 py-4 text-lg font-medium text-white">Contacto</Link>
               <div className="pt-4 space-y-2">
-                <Link href="/login">
+                <Link href="/login" onClick={() => setIsOpen(false)}>
                   <Button variant="outline" className="w-full border-zinc-700 text-white py-6 text-xl font-bold hover:bg-zinc-800">
                     INICIO DE SESIÓN
                   </Button>
                 </Link>
-                <Button className="w-full bg-red-600 hover:bg-red-700 text-white py-6 text-xl font-bold">
+                <Button className="w-full bg-red-600 hover:bg-red-700 text-white py-6 text-xl font-bold" onClick={() => setIsOpen(false)}>
                   Registrarse
                 </Button>
               </div>
