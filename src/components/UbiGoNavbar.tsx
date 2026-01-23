@@ -83,8 +83,7 @@ export function UbiGoNavbar() {
             className="md:hidden bg-zinc-900 border-b border-zinc-800 overflow-hidden"
           >
             <div className="px-4 pt-2 pb-6 space-y-2">
-              <Link href="#" className="block px-3 py-4 text-lg font-medium text-white border-b border-zinc-800">Viajes en moto</Link>
-              <Link href="#" className="block px-3 py-4 text-lg font-medium text-white border-b border-zinc-800">Solicitar una moto</Link>
+                <Link href="#" className="block px-3 py-4 text-lg font-medium text-white border-b border-zinc-800">Solicitar una moto</Link>
               <Link href="#" className="block px-3 py-4 text-lg font-medium text-white border-b border-zinc-800">Reservar una moto</Link>
               <Link href="#" className="block px-3 py-4 text-lg font-medium text-white border-b border-zinc-800">Tarifas</Link>
               <Link href="#contacto" className="block px-3 py-4 text-lg font-medium text-white">Contacto</Link>
