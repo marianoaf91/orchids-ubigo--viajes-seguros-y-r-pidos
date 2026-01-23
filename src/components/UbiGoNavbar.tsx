@@ -32,17 +32,12 @@ export function UbiGoNavbar() {
                 <DropdownMenuTrigger className="text-white hover:text-red-500 flex items-center gap-1 transition-colors font-medium outline-none">
                   Servicios <ChevronDown size={16} />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-black border-zinc-800 text-white min-w-[200px]">
-                  <Link href="#servicios">
-                    <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
-                      <Bike size={18} className="text-red-600" /> Viajes en moto
-                    </DropdownMenuItem>
-                  </Link>
-                  <Link href="#servicios">
-                    <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
-                      <MapPin size={18} className="text-red-600" /> Solicitar una moto
-                    </DropdownMenuItem>
-                  </Link>
+                  <DropdownMenuContent className="bg-black border-zinc-800 text-white min-w-[200px]">
+                    <Link href="#servicios">
+                      <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
+                        <MapPin size={18} className="text-red-600" /> Solicitar una moto
+                      </DropdownMenuItem>
+                    </Link>
                   <Link href="#servicios">
                     <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
                       <Calendar size={18} className="text-red-600" /> Reservar una moto
