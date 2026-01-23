@@ -174,15 +174,15 @@ export function UbiGoHero() {
             >
               <h1 className="text-6xl md:text-8xl font-black text-white leading-tight mb-6">
                 Viaja con <br />
-                <span className="text-red-600">Libertad.</span>
+                <span className="text-red-600">Planificación.</span>
               </h1>
               <p className="text-xl text-zinc-400 mb-10 max-w-lg leading-relaxed">
-                  La forma más rápida y segura de moverte por Madrid. UbiGo! te conecta con conductores en minutos.
+                  La forma más segura y puntual de moverte por Madrid. UbiGo! se especializa exclusivamente en reservas de transporte de personas.
               </p>
 
               <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md">
                 <h3 className="text-black text-2xl font-bold mb-6 flex items-center gap-2">
-                  ¿A dónde vamos hoy?
+                  Reserva tu viaje
                 </h3>
                   <div className="space-y-4">
                         <div className="relative">
