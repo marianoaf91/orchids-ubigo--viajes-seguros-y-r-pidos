@@ -52,15 +52,15 @@ export function UbiGoServices() {
           >
             Todo lo que necesitas para <br /> <span className="text-red-600">moverte por la ciudad</span>
           </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-zinc-400 text-lg max-w-2xl mx-auto"
-          >
-            Desde viajes rápidos hasta soluciones para empresas. UbiGo! es la plataforma de movilidad líder en dos ruedas.
-          </motion.p>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-zinc-400 text-lg max-w-2xl mx-auto"
+            >
+              UbiGo! es la plataforma de movilidad líder en dos ruedas, diseñada para moverte rápido por la ciudad.
+            </motion.p>
         </div>
 
         <Tabs defaultValue="envios" className="w-full">
