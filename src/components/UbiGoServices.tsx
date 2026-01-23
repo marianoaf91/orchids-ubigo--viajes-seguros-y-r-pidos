@@ -9,14 +9,6 @@ import { Button } from "@/components/ui/button"
 
 const services = [
   {
-    id: "viajes",
-    icon: <Bike className="w-5 h-5" />,
-    title: "Viajes en Moto",
-    description: "Llega a tu destino esquivando el tráfico con nuestros conductores expertos.",
-    features: ["Conductores certificados", "Cascos desinfectados", "Seguro de viaje incluido", "Seguimiento en tiempo real"],
-    image: "https://images.unsplash.com/photo-1558981403-c5f91dbbe980?auto=format&fit=crop&q=80&w=800",
-  },
-  {
     id: "envios",
     icon: <Package className="w-5 h-5" />,
     title: "Envíos Flash",
@@ -31,14 +23,6 @@ const services = [
     description: "Planifica tus traslados con antelación y asegura tu transporte.",
     features: ["Agenda hasta con 7 días", "Prioridad de asignación", "Recordatorios vía app", "Cancelación flexible"],
     image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: "empresas",
-    icon: <Briefcase className="w-5 h-5" />,
-    title: "UbiGo Empresas",
-    description: "Soluciones corporativas para el transporte de tus empleados y mensajería.",
-    features: ["Facturación mensual", "Panel de administración", "Múltiples usuarios", "Soporte 24/7 dedicado"],
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800",
   },
 ]
 
@@ -79,7 +63,7 @@ export function UbiGoServices() {
           </motion.p>
         </div>
 
-        <Tabs defaultValue="viajes" className="w-full">
+        <Tabs defaultValue="envios" className="w-full">
           <div className="flex justify-center mb-12">
             <TabsList className="bg-zinc-900/50 border border-zinc-800 p-1 h-auto flex-wrap justify-center sm:flex-nowrap">
               {services.map((service) => (
