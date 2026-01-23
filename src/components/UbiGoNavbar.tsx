@@ -27,26 +27,35 @@ export function UbiGoNavbar() {
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center gap-8">
-            <DropdownMenu>
-              <DropdownMenuTrigger className="text-white hover:text-red-500 flex items-center gap-1 transition-colors font-medium outline-none">
-                Servicios <ChevronDown size={16} />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-black border-zinc-800 text-white min-w-[200px]">
-                <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
-                  <Bike size={18} className="text-red-600" /> Viajes en moto
-                </DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
-                  <MapPin size={18} className="text-red-600" /> Solicitar una moto
-                </DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
-                  <Calendar size={18} className="text-red-600" /> Reservar una moto
-                </DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
-                  <DollarSign size={18} className="text-red-600" /> Ver tarifas
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div className="hidden md:flex items-center gap-8">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="text-white hover:text-red-500 flex items-center gap-1 transition-colors font-medium outline-none">
+                  Servicios <ChevronDown size={16} />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-black border-zinc-800 text-white min-w-[200px]">
+                  <Link href="#servicios">
+                    <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
+                      <Bike size={18} className="text-red-600" /> Viajes en moto
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="#servicios">
+                    <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
+                      <MapPin size={18} className="text-red-600" /> Solicitar una moto
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="#servicios">
+                    <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
+                      <Calendar size={18} className="text-red-600" /> Reservar una moto
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="#precios">
+                    <DropdownMenuItem className="hover:bg-zinc-900 cursor-pointer flex gap-2">
+                      <DollarSign size={18} className="text-red-600" /> Ver tarifas
+                    </DropdownMenuItem>
+                  </Link>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
             <Link href="#precios" className="text-white hover:text-red-500 transition-colors font-medium">Precios</Link>
             <Link href="#contacto" className="text-white hover:text-red-500 transition-colors font-medium">Contacto</Link>
             <Link href="/login">
