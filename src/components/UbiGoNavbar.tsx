@@ -95,9 +95,11 @@ export function UbiGoNavbar() {
                     INICIO DE SESIÓN
                   </Button>
                 </Link>
-                <Button className="w-full bg-red-600 hover:bg-red-700 text-white py-6 text-xl font-bold" onClick={() => setIsOpen(false)}>
-                  Registrarse
-                </Button>
+                <Link href="/registro" onClick={() => setIsOpen(false)}>
+                    <Button className="w-full bg-red-600 hover:bg-red-700 text-white py-6 text-xl font-bold">
+                      Registrarse
+                    </Button>
+                  </Link>
               </div>
             </div>
           </motion.div>
