@@ -40,9 +40,11 @@ export function UbiGoNavbar() {
                 INICIO DE SESIÓN
               </Button>
             </Link>
-            <Button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 font-bold">
-              Registrarse
-            </Button>
+            <Link href="/registro">
+              <Button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 font-bold">
+                Registrarse
+              </Button>
+            </Link>
           </div>
 
           <div className="md:hidden">
