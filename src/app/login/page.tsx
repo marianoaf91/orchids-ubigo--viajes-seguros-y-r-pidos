@@ -79,9 +79,9 @@ export default function LoginPage() {
             </div>
             <p className="text-center text-sm text-zinc-500">
               ¿No tienes una cuenta?{" "}
-              <Link href="#" className="text-red-500 hover:text-red-400 font-medium">
-                Regístrate gratis
-              </Link>
+                <Link href="/registro" className="text-red-500 hover:text-red-400 font-medium">
+                  Regístrate gratis
+                </Link>
             </p>
           </CardFooter>
         </Card>
