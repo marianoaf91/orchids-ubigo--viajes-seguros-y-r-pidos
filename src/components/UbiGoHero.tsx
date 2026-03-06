@@ -1,11 +1,11 @@
 "use client"
 
 import Image from "next/image"
-import { MapPin, Navigation, ArrowRight, X, Bike, Zap, Loader2, Star, Phone, ChevronLeft } from "lucide-react"
-import { Input } from "@/components/ui/input"
+import { MapPin, Navigation, ArrowRight, X, Bike, Zap, Loader2, Star, ChevronLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
+import { PlacesAutocompleteInput } from "@/components/PlacesAutocompleteInput"
 
 const pricingTiers = [
   {
@@ -190,24 +190,18 @@ export function UbiGoHero() {
                   Reserva tu viaje
                 </h3>
                   <div className="space-y-4">
-                        <div className="relative">
-                          <MapPin className="absolute left-3 top-3.5 text-red-600" size={20} />
-                          <Input 
-                            placeholder="Ubicación de origen" 
-                            className="pl-10 h-14 bg-zinc-100 border-none rounded-xl text-black focus-visible:ring-red-600"
-                            value={origin}
-                            onChange={(e) => setOrigin(e.target.value)}
-                          />
-                        </div>
-                        <div className="relative">
-                          <Navigation className="absolute left-3 top-3.5 text-zinc-400" size={20} />
-                          <Input 
-                            placeholder="Destino" 
-                            className="pl-10 h-14 bg-zinc-100 border-none rounded-xl text-black focus-visible:ring-red-600"
-                            value={destination}
-                            onChange={(e) => setDestination(e.target.value)}
-                          />
-                        </div>
+                        <PlacesAutocompleteInput
+                          placeholder="Ubicación de origen"
+                          value={origin}
+                          onChange={setOrigin}
+                          icon={<MapPin className="text-red-600" size={20} />}
+                        />
+                        <PlacesAutocompleteInput
+                          placeholder="Destino"
+                          value={destination}
+                          onChange={setDestination}
+                          icon={<Navigation className="text-zinc-400" size={20} />}
+                        />
 
                   {error && (
                     <p className="text-red-600 text-sm">{error}</p>

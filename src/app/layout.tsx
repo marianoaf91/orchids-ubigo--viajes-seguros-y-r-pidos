@@ -25,6 +25,10 @@ export default function RootLayout({
         />
         <ErrorReporter />
         <Script
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9UI_yTYSI8-FSW49ZV_Xc2yP5JJs8NY&libraries=places&language=es&region=ES"
+          strategy="beforeInteractive"
+        />
+        <Script
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"
           strategy="afterInteractive"
           data-target-origin="*"
