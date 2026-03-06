@@ -146,8 +146,13 @@ export function UbiGoHero() {
         description: tier.description
       }))
 
+      // Round distance: 1 decimal if < 10 km, whole number if >= 10 km
+      const displayDistance = distanceKm < 10
+        ? Math.round(distanceKm * 10) / 10
+        : Math.round(distanceKm)
+
       setPriceResult({
-        distance: Math.round(distanceKm * 10) / 10,
+        distance: displayDistance,
         duration: durationMin,
         prices
       })
@@ -448,11 +453,11 @@ export function UbiGoHero() {
 
                     <div className="flex gap-4 mb-6">
                       <div className="bg-red-50 rounded-xl p-4 flex-1 text-center">
-                        <p className="text-3xl font-black text-red-600">{priceResult.distance} km</p>
+                        <p className="text-2xl font-black text-red-600 truncate">{priceResult.distance} km</p>
                         <p className="text-xs text-zinc-500 uppercase tracking-wide">Distancia</p>
                       </div>
                       <div className="bg-zinc-100 rounded-xl p-4 flex-1 text-center">
-                        <p className="text-3xl font-black text-black">{priceResult.duration} min</p>
+                        <p className="text-2xl font-black text-black truncate">{priceResult.duration} min</p>
                         <p className="text-xs text-zinc-500 uppercase tracking-wide">Duración aprox.</p>
                       </div>
                     </div>
