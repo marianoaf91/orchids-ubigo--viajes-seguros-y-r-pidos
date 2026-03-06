@@ -1,6 +1,14 @@
 import { NextRequest, NextResponse } from "next/server"
 
-const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY
+async function geocode(place: string): Promise<{ lat: number; lon: number } | null> {
+  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(place)}&format=json&limit=1`
+  const res = await fetch(url, {
+    headers: { "User-Agent": "UbiGo/1.0 (ubigo.app)" }
+  })
+  const data = await res.json()
+  if (!data || data.length === 0) return null
+  return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) }
+}
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
@@ -14,57 +22,48 @@ export async function GET(request: NextRequest) {
     )
   }
 
-  if (!GOOGLE_MAPS_API_KEY) {
-    // Deterministic hash from origin+destination to get consistent results
-    const seed = (origin + destination).split("").reduce((acc, c) => acc + c.charCodeAt(0), 0)
-    const pseudoRandom = ((seed * 9301 + 49297) % 233280) / 233280
+  try {
+    // Geocode both addresses in parallel
+    const [originCoords, destCoords] = await Promise.all([
+      geocode(origin),
+      geocode(destination)
+    ])
 
-    // Realistic city distances: 2–18 km
-    const estimatedDistance = 2 + pseudoRandom * 16
-    // Motorcycle in city: ~25–35 km/h average (traffic lights, traffic)
-    const avgSpeedKmH = 28 + pseudoRandom * 8
-    const estimatedDurationMin = (estimatedDistance / avgSpeedKmH) * 60
+    if (!originCoords) {
+      return NextResponse.json({ error: `No se encontró la dirección de origen: "${origin}"` }, { status: 400 })
+    }
+    if (!destCoords) {
+      return NextResponse.json({ error: `No se encontró la dirección de destino: "${destination}"` }, { status: 400 })
+    }
+
+    // Get real route from OSRM (motorcycle uses car profile)
+    const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${originCoords.lon},${originCoords.lat};${destCoords.lon},${destCoords.lat}?overview=false`
+    const routeRes = await fetch(osrmUrl, {
+      headers: { "User-Agent": "UbiGo/1.0 (ubigo.app)" }
+    })
+    const routeData = await routeRes.json()
+
+    if (routeData.code !== "Ok" || !routeData.routes || routeData.routes.length === 0) {
+      throw new Error("No se pudo calcular la ruta")
+    }
+
+    const route = routeData.routes[0]
+    const distanceMeters: number = route.distance  // meters
+    const durationSeconds: number = route.duration  // seconds
 
     return NextResponse.json({
-      distance: Math.round(estimatedDistance * 1000),
-      duration: Math.round(estimatedDurationMin * 60),
+      distance: Math.round(distanceMeters),
+      duration: Math.round(durationSeconds),
       origin,
       destination,
-      mode: "estimated"
-    })
-  }
-
-  try {
-    const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${encodeURIComponent(origin)}&destinations=${encodeURIComponent(destination)}&mode=driving&language=es&region=es&key=${GOOGLE_MAPS_API_KEY}`
-
-    const response = await fetch(url)
-    const data = await response.json()
-
-    if (data.status !== "OK") {
-      throw new Error(`Google API error: ${data.status}`)
-    }
-
-    const element = data.rows[0]?.elements[0]
-
-    if (!element || element.status !== "OK") {
-      throw new Error(`No se pudo calcular la ruta: ${element?.status || "UNKNOWN"}`)
-    }
-
-    return NextResponse.json({
-      distance: element.distance.value,
-      duration: element.duration.value,
-      distanceText: element.distance.text,
-      durationText: element.duration.text,
-      origin: data.origin_addresses[0],
-      destination: data.destination_addresses[0],
-      mode: "google"
+      mode: "osrm"
     })
   } catch (error) {
-    console.error("Distance Matrix API error:", error)
-    
+    console.error("OSRM routing error:", error)
+
+    // Deterministic fallback based on origin+destination text
     const seed = (origin + destination).split("").reduce((acc, c) => acc + c.charCodeAt(0), 0)
     const pseudoRandom = ((seed * 9301 + 49297) % 233280) / 233280
-
     const estimatedDistance = 2 + pseudoRandom * 16
     const avgSpeedKmH = 28 + pseudoRandom * 8
     const estimatedDurationMin = (estimatedDistance / avgSpeedKmH) * 60
