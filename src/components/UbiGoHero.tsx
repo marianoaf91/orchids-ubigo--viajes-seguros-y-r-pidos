@@ -315,8 +315,14 @@ export function UbiGoHero() {
               transition={{ duration: 1, delay: 0.2 }}
               className="hidden lg:block relative"
             >
-               <div className="relative z-20 rounded-3xl overflow-hidden border-8 border-zinc-900 shadow-2xl bg-zinc-900">
-                 <CalendarWidget />
+               <div className="relative z-20 rounded-3xl overflow-hidden border-8 border-zinc-900 shadow-2xl">
+                    <Image
+                      src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/20d9c869-8da0-4255-9e75-670095d3e726/MOTOUBIGO-1768390783964.jpg?width=8000&height=8000&resize=contain"
+                      alt="UbiGo Ride"
+                      width={800}
+                      height={1000}
+                      className="w-full h-full object-cover"
+                    />
                </div>
                  <motion.div 
                    initial={{ y: 20, opacity: 0 }}
