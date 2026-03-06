@@ -1,11 +1,84 @@
 "use client"
 
 import * as React from "react"
+import { useState, useMemo } from "react"
 import { motion } from "framer-motion"
-import { Bike, Package, Calendar, Briefcase, MapPin, Clock, Shield, Star } from "lucide-react"
+import { Bike, Package, Calendar, Briefcase, MapPin, Clock, Shield, Star, ChevronLeft, ChevronRight } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+
+const DAYS = ["L", "M", "X", "J", "V", "S", "D"]
+const MONTHS = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
+
+function CalendarWidget() {
+  const today = new Date()
+  const [current, setCurrent] = useState({ month: today.getMonth(), year: today.getFullYear() })
+  const [selected, setSelected] = useState(today.getDate())
+
+  const days = useMemo(() => {
+    const first = new Date(current.year, current.month, 1).getDay()
+    const offset = first === 0 ? 6 : first - 1
+    const total = new Date(current.year, current.month + 1, 0).getDate()
+    return { offset, total }
+  }, [current])
+
+  const prev = () => setCurrent(c => c.month === 0 ? { month: 11, year: c.year - 1 } : { month: c.month - 1, year: c.year })
+  const next = () => setCurrent(c => c.month === 11 ? { month: 0, year: c.year + 1 } : { month: c.month + 1, year: c.year })
+  const isToday = (d: number) => d === today.getDate() && current.month === today.getMonth() && current.year === today.getFullYear()
+  const isPast = (d: number) => new Date(current.year, current.month, d) < new Date(today.getFullYear(), today.getMonth(), today.getDate())
+  const cells = Array.from({ length: days.offset + days.total }, (_, i) => i < days.offset ? null : i - days.offset + 1)
+
+  return (
+    <div className="bg-zinc-900 p-6 w-full h-full select-none rounded-2xl">
+      <div className="flex items-center justify-between mb-5">
+        <button onClick={prev} className="p-2 rounded-xl hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors">
+          <ChevronLeft size={18} />
+        </button>
+        <div className="text-center">
+          <p className="text-white font-black text-lg">{MONTHS[current.month]}</p>
+          <p className="text-zinc-500 text-sm">{current.year}</p>
+        </div>
+        <button onClick={next} className="p-2 rounded-xl hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors">
+          <ChevronRight size={18} />
+        </button>
+      </div>
+      <div className="grid grid-cols-7 mb-2">
+        {DAYS.map(d => (
+          <div key={d} className="text-center text-[10px] font-bold text-zinc-500 uppercase py-1">{d}</div>
+        ))}
+      </div>
+      <div className="grid grid-cols-7 gap-1">
+        {cells.map((day, i) => (
+          <div key={i} className="aspect-square flex items-center justify-center">
+            {day && (
+              <button
+                onClick={() => !isPast(day) && setSelected(day)}
+                disabled={isPast(day)}
+                className={`w-8 h-8 rounded-lg text-sm font-bold transition-all
+                  ${isPast(day) ? "text-zinc-700 cursor-not-allowed" : ""}
+                  ${!isPast(day) && day !== selected ? "text-zinc-300 hover:bg-zinc-700" : ""}
+                  ${isToday(day) && day !== selected ? "ring-1 ring-red-600 text-red-400" : ""}
+                  ${day === selected && !isPast(day) ? "bg-red-600 text-white shadow-[0_0_12px_rgba(220,38,38,0.5)]" : ""}
+                `}
+              >{day}</button>
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="mt-5 pt-4 border-t border-zinc-800 flex items-center justify-between">
+        <div>
+          <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">Fecha seleccionada</p>
+          <p className="text-white font-black">{selected} {MONTHS[current.month]}, {current.year}</p>
+        </div>
+        <div className="bg-red-600/10 border border-red-600/30 rounded-xl px-3 py-2 text-center">
+          <p className="text-red-400 text-[9px] uppercase tracking-widest font-bold">Disponible</p>
+          <p className="text-white font-black">24h</p>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const services = [
   {
@@ -82,18 +155,7 @@ export function UbiGoServices() {
                 <div className="relative group">
                   <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-900 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                   <div className="relative aspect-video lg:aspect-square overflow-hidden rounded-2xl border border-zinc-800">
-                    <img 
-                      src={service.image} 
-                      alt={service.title}
-                      className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                    <div className="absolute bottom-6 left-6">
-                      <div className="flex items-center gap-2 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">
-                        <Star size={14} fill="currentColor" />
-                        Servicio de Reservas
-                      </div>
-                    </div>
+                    <CalendarWidget />
                   </div>
                 </div>
 
