@@ -268,45 +268,12 @@ export function UbiGoHero() {
                   La forma más segura y puntual de moverte por Madrid. UbiGo! se especializa exclusivamente en reservas de transporte de personas.
               </p>
 
-              <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md">
-                <h3 className="text-black text-2xl font-bold mb-6 flex items-center gap-2">
-                  Reserva tu viaje
-                </h3>
-                  <div className="space-y-4">
-                        <PlacesAutocompleteInput
-                          placeholder="Ubicación de origen"
-                          value={origin}
-                          onChange={setOrigin}
-                          icon={<MapPin className="text-red-600" size={20} />}
-                        />
-                        <PlacesAutocompleteInput
-                          placeholder="Destino"
-                          value={destination}
-                          onChange={setDestination}
-                          icon={<Navigation className="text-zinc-400" size={20} />}
-                        />
-
-                  {error && (
-                    <p className="text-red-600 text-sm">{error}</p>
-                  )}
-                  <Button 
-                    onClick={calculatePrices}
-                    disabled={loading}
-                    className="w-full h-14 bg-black hover:bg-zinc-800 text-white font-bold text-lg rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-95 disabled:opacity-50"
-                  >
-                    {loading ? (
-                      <>
-                        <Loader2 className="animate-spin" size={20} />
-                        Calculando...
-                      </>
-                    ) : (
-                      <>
-                        Ver Precios <ArrowRight size={20} />
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </div>
+              <Button
+                onClick={() => document.getElementById("servicios")?.scrollIntoView({ behavior: "smooth" })}
+                className="h-14 px-8 bg-red-600 hover:bg-red-700 text-white font-bold text-lg rounded-xl flex items-center gap-2 transition-transform active:scale-95"
+              >
+                Reservar ahora <ArrowRight size={20} />
+              </Button>
             </motion.div>
 
             <motion.div
