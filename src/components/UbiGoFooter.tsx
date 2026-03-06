@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { ShieldCheck, CreditCard, Lock, Phone, Mail } from "lucide-react"
-import { Button } from "@/components/ui/button"
 
 export function UbiGoFooter() {
   return (
