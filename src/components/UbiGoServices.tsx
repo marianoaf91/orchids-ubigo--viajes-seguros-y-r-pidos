@@ -413,20 +413,6 @@ export function UbiGoServices() {
           </div>
         </div>
 
-        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { label: "Conductores", value: "2.5k+", icon: <Bike className="text-red-600" /> },
-            { label: "Viajes Diarios", value: "10k+", icon: <MapPin className="text-red-600" /> },
-            { label: "Tiempo Medio", value: "8 min", icon: <Clock className="text-red-600" /> },
-            { label: "Satisfacción", value: "4.9/5", icon: <Star className="text-red-600" fill="currentColor" /> },
-          ].map((stat, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="text-center group">
-              <div className="inline-flex p-3 bg-zinc-900 rounded-2xl border border-zinc-800 mb-4 group-hover:border-red-600/50 transition-colors">{stat.icon}</div>
-              <div className="text-3xl font-black text-white mb-1">{stat.value}</div>
-              <div className="text-zinc-500 font-medium">{stat.label}</div>
-            </motion.div>
-          ))}
-        </div>
       </div>
 
       <AnimatePresence>
