@@ -400,7 +400,7 @@ export function UbiGoServices() {
               </p>
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
-              {["Agenda hasta con 7 días", "Prioridad de asignación", "Recordatorios vía app", "Cancelación flexible"].map((feature, idx) => (
+              {["Prioridad de asignación", "Recordatorios vía app", "Cancelación flexible"].map((feature, idx) => (
                 <div key={idx} className="flex items-center gap-3 bg-zinc-900/40 p-4 rounded-xl border border-zinc-800/50 hover:border-red-600/50 transition-colors">
                   <div className="bg-red-600/10 p-2 rounded-lg text-red-600"><Shield size={20} /></div>
                   <span className="text-zinc-300 font-medium">{feature}</span>
