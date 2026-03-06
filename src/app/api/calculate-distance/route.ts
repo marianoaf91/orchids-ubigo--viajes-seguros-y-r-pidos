@@ -15,12 +15,19 @@ export async function GET(request: NextRequest) {
   }
 
   if (!GOOGLE_MAPS_API_KEY) {
-    const estimatedDistance = Math.random() * 15 + 2
-    const estimatedDuration = estimatedDistance * 3 + Math.random() * 10
+    // Deterministic hash from origin+destination to get consistent results
+    const seed = (origin + destination).split("").reduce((acc, c) => acc + c.charCodeAt(0), 0)
+    const pseudoRandom = ((seed * 9301 + 49297) % 233280) / 233280
+
+    // Realistic city distances: 2–18 km
+    const estimatedDistance = 2 + pseudoRandom * 16
+    // Motorcycle in city: ~25–35 km/h average (traffic lights, traffic)
+    const avgSpeedKmH = 28 + pseudoRandom * 8
+    const estimatedDurationMin = (estimatedDistance / avgSpeedKmH) * 60
 
     return NextResponse.json({
       distance: Math.round(estimatedDistance * 1000),
-      duration: Math.round(estimatedDuration * 60),
+      duration: Math.round(estimatedDurationMin * 60),
       origin,
       destination,
       mode: "estimated"
@@ -55,12 +62,16 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Distance Matrix API error:", error)
     
-    const estimatedDistance = Math.random() * 15 + 2
-    const estimatedDuration = estimatedDistance * 3 + Math.random() * 10
+    const seed = (origin + destination).split("").reduce((acc, c) => acc + c.charCodeAt(0), 0)
+    const pseudoRandom = ((seed * 9301 + 49297) % 233280) / 233280
+
+    const estimatedDistance = 2 + pseudoRandom * 16
+    const avgSpeedKmH = 28 + pseudoRandom * 8
+    const estimatedDurationMin = (estimatedDistance / avgSpeedKmH) * 60
 
     return NextResponse.json({
       distance: Math.round(estimatedDistance * 1000),
-      duration: Math.round(estimatedDuration * 60),
+      duration: Math.round(estimatedDurationMin * 60),
       origin,
       destination,
       mode: "fallback"
