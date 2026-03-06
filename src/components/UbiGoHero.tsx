@@ -1,10 +1,10 @@
 "use client"
 
 import Image from "next/image"
-import { MapPin, Navigation, ArrowRight, X, Bike, Zap, Loader2, Star, ChevronLeft } from "lucide-react"
+import { MapPin, Navigation, ArrowRight, X, Bike, Zap, Loader2, Star, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { PlacesAutocompleteInput } from "@/components/PlacesAutocompleteInput"
 
 const pricingTiers = [
@@ -82,6 +82,89 @@ interface Driver {
   trips: number
   plate: string
   bike: string
+}
+
+const DAYS = ["L", "M", "X", "J", "V", "S", "D"]
+const MONTHS = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
+
+function CalendarWidget() {
+  const today = new Date()
+  const [current, setCurrent] = useState({ month: today.getMonth(), year: today.getFullYear() })
+  const [selected, setSelected] = useState(today.getDate())
+
+  const days = useMemo(() => {
+    const first = new Date(current.year, current.month, 1).getDay()
+    const offset = first === 0 ? 6 : first - 1
+    const total = new Date(current.year, current.month + 1, 0).getDate()
+    return { offset, total }
+  }, [current])
+
+  const prev = () => setCurrent(c => c.month === 0 ? { month: 11, year: c.year - 1 } : { month: c.month - 1, year: c.year })
+  const next = () => setCurrent(c => c.month === 11 ? { month: 0, year: c.year + 1 } : { month: c.month + 1, year: c.year })
+
+  const isToday = (d: number) => d === today.getDate() && current.month === today.getMonth() && current.year === today.getFullYear()
+  const isPast = (d: number) => new Date(current.year, current.month, d) < new Date(today.getFullYear(), today.getMonth(), today.getDate())
+
+  const cells = Array.from({ length: days.offset + days.total }, (_, i) => i < days.offset ? null : i - days.offset + 1)
+
+  return (
+    <div className="bg-zinc-900 p-8 w-full select-none">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
+        <button onClick={prev} className="p-2 rounded-xl hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors">
+          <ChevronLeft size={20} />
+        </button>
+        <div className="text-center">
+          <p className="text-white font-black text-xl">{MONTHS[current.month]}</p>
+          <p className="text-zinc-500 text-sm font-medium">{current.year}</p>
+        </div>
+        <button onClick={next} className="p-2 rounded-xl hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors">
+          <ChevronRight size={20} />
+        </button>
+      </div>
+
+      {/* Day headers */}
+      <div className="grid grid-cols-7 mb-2">
+        {DAYS.map(d => (
+          <div key={d} className="text-center text-[11px] font-bold text-zinc-500 uppercase py-1">{d}</div>
+        ))}
+      </div>
+
+      {/* Day cells */}
+      <div className="grid grid-cols-7 gap-1">
+        {cells.map((day, i) => (
+          <div key={i} className="aspect-square flex items-center justify-center">
+            {day && (
+              <button
+                onClick={() => !isPast(day) && setSelected(day)}
+                disabled={isPast(day)}
+                className={`w-9 h-9 rounded-xl text-sm font-bold transition-all
+                  ${isPast(day) ? "text-zinc-700 cursor-not-allowed" : ""}
+                  ${!isPast(day) && day !== selected ? "text-zinc-300 hover:bg-zinc-700" : ""}
+                  ${isToday(day) && day !== selected ? "ring-1 ring-red-600 text-red-400" : ""}
+                  ${day === selected && !isPast(day) ? "bg-red-600 text-white shadow-[0_0_15px_rgba(220,38,38,0.5)]" : ""}
+                `}
+              >
+                {day}
+              </button>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Footer */}
+      <div className="mt-6 pt-5 border-t border-zinc-800 flex items-center justify-between">
+        <div>
+          <p className="text-xs text-zinc-500 uppercase tracking-widest mb-1">Fecha seleccionada</p>
+          <p className="text-white font-black text-lg">{selected} {MONTHS[current.month]}, {current.year}</p>
+        </div>
+        <div className="bg-red-600/10 border border-red-600/30 rounded-xl px-3 py-2 text-center">
+          <p className="text-red-400 text-[10px] uppercase tracking-widest font-bold">Disponible</p>
+          <p className="text-white font-black text-lg">24h</p>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export function UbiGoHero() {
@@ -232,14 +315,8 @@ export function UbiGoHero() {
               transition={{ duration: 1, delay: 0.2 }}
               className="hidden lg:block relative"
             >
-               <div className="relative z-20 rounded-3xl overflow-hidden border-8 border-zinc-900 shadow-2xl">
-                    <Image 
-                      src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/20d9c869-8da0-4255-9e75-670095d3e726/MOTOUBIGO-1768390783964.jpg?width=8000&height=8000&resize=contain" 
-                      alt="UbiGo Ride"
-                      width={800}
-                      height={1000}
-                      className="w-full h-full object-cover"
-                    />
+               <div className="relative z-20 rounded-3xl overflow-hidden border-8 border-zinc-900 shadow-2xl bg-zinc-900">
+                 <CalendarWidget />
                </div>
                  <motion.div 
                    initial={{ y: 20, opacity: 0 }}
