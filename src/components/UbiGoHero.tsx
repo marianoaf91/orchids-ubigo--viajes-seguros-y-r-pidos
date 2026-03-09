@@ -307,7 +307,7 @@ export function UbiGoHero() {
 
               <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md">
                 <h3 className="text-black text-2xl font-bold mb-6 flex items-center gap-2">
-                  Pide tu servicio
+                  Pide tu viaje
                 </h3>
                 <div className="space-y-4">
                   <PlacesAutocompleteInput
