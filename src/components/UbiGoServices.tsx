@@ -380,14 +380,7 @@ export function UbiGoServices() {
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-900 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
-            <div className="relative aspect-video lg:aspect-square overflow-hidden rounded-2xl border border-zinc-800">
-              <CalendarWidget />
-            </div>
-          </div>
-
+        <div className="max-w-2xl mx-auto">
           <div className="space-y-8">
             <div>
               <h3 className="text-3xl font-black text-white mb-4">Reservas</h3>
@@ -412,7 +405,6 @@ export function UbiGoServices() {
             </div>
           </div>
         </div>
-
       </div>
 
       <AnimatePresence>
