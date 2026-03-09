@@ -256,7 +256,44 @@ export function UbiGoHero() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="relative pb-14"
+            >
+               <div className="relative z-20 rounded-3xl overflow-hidden border-8 border-zinc-900 shadow-2xl">
+                    <Image
+                      src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/20d9c869-8da0-4255-9e75-670095d3e726/MOTOUBIGO-1768390783964.jpg?width=8000&height=8000&resize=contain"
+                      alt="UbiGo Ride"
+                      width={800}
+                      height={1000}
+                      className="w-full h-full object-cover"
+                    />
+               </div>
+                 <motion.div
+                   initial={{ y: 20, opacity: 0 }}
+                   animate={{ y: 0, opacity: 1 }}
+                   transition={{ delay: 1, duration: 0.5 }}
+                   className="absolute bottom-0 left-0 bg-zinc-900 text-white p-6 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-30 overflow-hidden border border-zinc-800"
+                 >
+                   <div className="relative z-10">
+                     <p className="text-3xl font-black italic tracking-tighter leading-none mb-3 text-red-600 drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]">SIEMPRE EN MOVIMIENTO</p>
+                     <div className="h-0.5 w-full bg-gradient-to-r from-red-600 to-transparent mb-3" />
+                     <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400">Servicio 24 horas</p>
+                   </div>
+                   <motion.div
+                     animate={{
+                       x: [-100, 100],
+                       opacity: [0, 0.1, 0]
+                     }}
+                     transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                     className="absolute top-0 left-0 w-20 h-full bg-white skew-x-12 transform"
+                   />
+                 </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
@@ -299,43 +336,6 @@ export function UbiGoHero() {
                   </Button>
                 </div>
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="relative pb-14"
-            >
-               <div className="relative z-20 rounded-3xl overflow-hidden border-8 border-zinc-900 shadow-2xl">
-                    <Image
-                      src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/20d9c869-8da0-4255-9e75-670095d3e726/MOTOUBIGO-1768390783964.jpg?width=8000&height=8000&resize=contain"
-                      alt="UbiGo Ride"
-                      width={800}
-                      height={1000}
-                      className="w-full h-full object-cover"
-                    />
-               </div>
-                 <motion.div
-                   initial={{ y: 20, opacity: 0 }}
-                   animate={{ y: 0, opacity: 1 }}
-                   transition={{ delay: 1, duration: 0.5 }}
-                   className="absolute bottom-0 left-0 bg-zinc-900 text-white p-6 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-30 overflow-hidden border border-zinc-800"
-                 >
-                   <div className="relative z-10">
-                     <p className="text-3xl font-black italic tracking-tighter leading-none mb-3 text-red-600 drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]">SIEMPRE EN MOVIMIENTO</p>
-                     <div className="h-0.5 w-full bg-gradient-to-r from-red-600 to-transparent mb-3" />
-                     <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400">Servicio 24 horas</p>
-                   </div>
-                   <motion.div
-                     animate={{
-                       x: [-100, 100],
-                       opacity: [0, 0.1, 0]
-                     }}
-                     transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                     className="absolute top-0 left-0 w-20 h-full bg-white skew-x-12 transform"
-                   />
-                 </motion.div>
             </motion.div>
           </div>
         </div>
