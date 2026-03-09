@@ -305,7 +305,7 @@ export function UbiGoHero() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="hidden lg:block relative pb-14 mt-48"
+              className="hidden lg:block relative pb-14"
             >
                <div className="relative z-20 rounded-3xl overflow-hidden border-8 border-zinc-900 shadow-2xl">
                     <Image
