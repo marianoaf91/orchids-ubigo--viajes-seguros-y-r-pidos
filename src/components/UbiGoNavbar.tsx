@@ -23,7 +23,7 @@ export function UbiGoNavbar() {
 
             <div className="hidden md:flex items-center gap-8 text-sm font-bold tracking-widest">
               <Link href="#servicios" className="text-zinc-400 hover:text-white transition-colors">
-                RESERVA
+                PIDE TU VIAJE
               </Link>
               <Link href="#precios" className="text-zinc-400 hover:text-white transition-colors">
                 PRECIOS
@@ -72,7 +72,7 @@ export function UbiGoNavbar() {
                   className="block px-3 py-4 text-xl font-bold text-zinc-400 hover:text-white border-b border-zinc-800"
                   onClick={() => setIsOpen(false)}
                 >
-                  RESERVA
+                  PIDE TU VIAJE
                 </Link>
                 <Link
                   href="#precios"
