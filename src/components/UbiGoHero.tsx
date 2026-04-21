@@ -254,37 +254,37 @@ export function UbiGoHero() {
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-red-600/20 blur-[120px]" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:items-start">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="relative rounded-2xl overflow-hidden shadow-2xl"
+              className="rounded-2xl overflow-hidden shadow-2xl"
             >
               <Image
                 src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/20d9c869-8da0-4255-9e75-670095d3e726/MOTOUBIGO-1768390783964.jpg?width=8000&height=8000&resize=contain"
                 alt="UbiGo Ride"
                 width={800}
-                height={1000}
-                className="w-full h-full object-cover"
+                height={600}
+                className="w-full object-cover"
               />
-              {/* Gradient overlay for text legibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <motion.div
-                initial={{ y: 20, opacity: 0 }}
+                initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 1, duration: 0.5 }}
-                className="absolute bottom-0 left-0 p-6 overflow-hidden"
+                className="relative bg-zinc-900 px-6 py-5 overflow-hidden"
               >
-                <div className="relative z-10">
-                  <p className="text-3xl font-black italic tracking-tighter leading-none mb-3 text-red-600 drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]">SIEMPRE EN<br />MOVIMIENTO</p>
-                  <div className="h-0.5 w-full bg-gradient-to-r from-red-600 to-transparent mb-3" />
-                  <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-300">Servicio 24 horas</p>
-                </div>
+                <p className="text-4xl font-black italic tracking-tighter leading-[1.05] mb-3 text-red-600">
+                  SIEMPRE EN<br />MOVIMIENTO
+                </p>
+                <div className="h-[2px] w-16 bg-red-600 mb-3" />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-zinc-400">
+                  Servicio 24 horas
+                </p>
                 <motion.div
-                  animate={{ x: [-100, 200], opacity: [0, 0.1, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  className="absolute top-0 left-0 w-20 h-full bg-white skew-x-12 transform"
+                  animate={{ x: [-200, 600], opacity: [0, 0.08, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                  className="absolute top-0 left-0 w-24 h-full bg-white skew-x-12"
                 />
               </motion.div>
             </motion.div>
