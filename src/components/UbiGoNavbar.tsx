@@ -8,98 +8,93 @@ import { motion, AnimatePresence } from "framer-motion"
 
 export function UbiGoNavbar() {
   const [isOpen, setIsOpen] = React.useState(false)
+  const [scrolled, setScrolled] = React.useState(false)
+
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", onScroll)
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-black border-b border-zinc-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      scrolled
+        ? "bg-black/90 backdrop-blur-md border-b border-white/5 shadow-[0_2px_40px_rgba(0,0,0,0.6)]"
+        : "bg-transparent"
+    }`}>
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
         <div className="flex justify-between h-20 items-center">
-            <div className="flex items-center">
-              <Link href="/" className="flex items-center gap-2">
-                <span className="text-3xl font-black tracking-tighter text-white">
-                  Ubi<span className="text-red-600">Go!</span>
-                </span>
-              </Link>
-            </div>
+          <Link href="/" className="flex items-center gap-2 group">
+            <span className="text-[1.75rem] font-black tracking-tighter text-white leading-none">
+              Ubi<span className="text-red-500">Go!</span>
+            </span>
+          </Link>
 
-            <div className="hidden md:flex items-center gap-8 text-sm font-bold tracking-widest">
-              <Link href="#pide-tu-viaje" className="text-zinc-400 hover:text-white transition-colors">
-                PIDE TU VIAJE
+          <div className="hidden md:flex items-center gap-10 text-[11px] font-bold tracking-[0.18em]">
+            {[["#pide-tu-viaje","PIDE TU VIAJE"],["#precios","PRECIOS"],["#contacto","CONTACTO"]].map(([href, label]) => (
+              <Link key={href} href={href}
+                className="relative text-zinc-400 hover:text-white transition-colors duration-200 group">
+                {label}
+                <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-red-500 group-hover:w-full transition-all duration-300" />
               </Link>
-              <Link href="#precios" className="text-zinc-400 hover:text-white transition-colors">
-                PRECIOS
-              </Link>
-              <Link href="#contacto" className="text-zinc-400 hover:text-white transition-colors">
-                CONTACTO
-              </Link>
-            </div>
+            ))}
+          </div>
 
-            <div className="hidden md:flex items-center gap-8">
-
+          <div className="hidden md:flex items-center gap-4">
             <Link href="/login">
-              <Button variant="ghost" className="text-white hover:text-red-500 hover:bg-transparent font-bold">
-                INICIO DE SESIÓN
+              <Button variant="ghost"
+                className="text-zinc-300 hover:text-white hover:bg-white/5 font-bold text-[11px] tracking-widest h-9 px-4 rounded-lg transition-all">
+                INICIAR SESIÓN
               </Button>
             </Link>
             <Link href="/registro">
-              <Button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 font-bold">
+              <Button className="bg-red-600 hover:bg-red-500 text-white rounded-full px-6 h-9 font-bold text-[11px] tracking-wide shadow-[0_0_20px_rgba(220,38,38,0.35)] hover:shadow-[0_0_28px_rgba(220,38,38,0.55)] transition-all">
                 Registrarse
               </Button>
             </Link>
           </div>
 
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-white p-2"
-            >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+          >
+            <motion.div animate={{ rotate: isOpen ? 90 : 0 }} transition={{ duration: 0.2 }}>
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.div>
+          </button>
         </div>
       </div>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-zinc-900 border-b border-zinc-800 overflow-hidden"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18 }}
+            className="md:hidden bg-zinc-950/95 backdrop-blur-xl border-b border-white/5 overflow-hidden"
           >
-            <div className="px-4 pt-2 pb-6 space-y-2">
-                <Link
-                  href="#pide-tu-viaje"
-                  className="block px-3 py-4 text-xl font-bold text-zinc-400 hover:text-white border-b border-zinc-800"
-                  onClick={() => setIsOpen(false)}
-                >
-                  PIDE TU VIAJE
+            <div className="px-5 pt-3 pb-6 space-y-1">
+              {[["#pide-tu-viaje","Pide tu viaje"],["#precios","Precios"],["#contacto","Contacto"]].map(([href, label]) => (
+                <Link key={href} href={href}
+                  className="flex items-center justify-between px-4 py-3.5 text-base font-semibold text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                  onClick={() => setIsOpen(false)}>
+                  {label}
+                  <span className="text-zinc-700 text-lg">›</span>
                 </Link>
-                <Link
-                  href="#precios"
-                  className="block px-3 py-4 text-xl font-bold text-zinc-400 hover:text-white border-b border-zinc-800"
-                  onClick={() => setIsOpen(false)}
-                >
-                  PRECIOS
-                </Link>
-                <Link
-                  href="#contacto"
-                  className="block px-3 py-4 text-xl font-bold text-zinc-400 hover:text-white border-b border-zinc-800"
-                  onClick={() => setIsOpen(false)}
-                >
-                  CONTACTO
-                </Link>
-                <div className="pt-4 space-y-2">
-
+              ))}
+              <div className="pt-3 grid grid-cols-2 gap-3">
                 <Link href="/login" onClick={() => setIsOpen(false)}>
-                  <Button variant="outline" className="w-full border-zinc-700 text-white py-6 text-xl font-bold hover:bg-zinc-800">
-                    INICIO DE SESIÓN
+                  <Button variant="outline"
+                    className="w-full border-white/10 bg-white/5 text-white hover:bg-white/10 hover:text-white font-bold h-11 rounded-xl text-sm">
+                    Iniciar sesión
                   </Button>
                 </Link>
                 <Link href="/registro" onClick={() => setIsOpen(false)}>
-                    <Button className="w-full bg-red-600 hover:bg-red-700 text-white py-6 text-xl font-bold">
-                      Registrarse
-                    </Button>
-                  </Link>
+                  <Button className="w-full bg-red-600 hover:bg-red-500 text-white font-bold h-11 rounded-xl text-sm shadow-[0_0_20px_rgba(220,38,38,0.4)]">
+                    Registrarse
+                  </Button>
+                </Link>
               </div>
             </div>
           </motion.div>

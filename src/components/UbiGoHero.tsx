@@ -249,91 +249,153 @@ export function UbiGoHero() {
 
   return (
     <>
-      <section className="relative min-h-screen pt-20 flex items-center bg-black overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-red-600/10 skew-x-12 transform translate-x-1/4" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-red-600/20 blur-[120px]" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:items-start">
+      <section className="relative min-h-screen bg-zinc-950 overflow-hidden flex items-center">
+        {/* Background glows */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[-10%] right-[-5%] w-[60%] h-[70%] bg-red-600/8 rounded-full blur-[140px]" />
+          <div className="absolute bottom-[-10%] left-[-5%] w-[50%] h-[60%] bg-red-600/6 rounded-full blur-[120px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] bg-red-900/5 rounded-full blur-[100px]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 w-full relative z-10 pt-28 pb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-16 items-center">
+
+            {/* LEFT — Image card */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="rounded-2xl overflow-hidden shadow-2xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15 }}
+              className="relative"
             >
-              <Image
-                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/20d9c869-8da0-4255-9e75-670095d3e726/MOTOUBIGO-1768390783964.jpg?width=8000&height=8000&resize=contain"
-                alt="UbiGo Ride"
-                width={800}
-                height={600}
-                className="w-full object-cover"
-              />
-              <motion.div
-                initial={{ y: 10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 1, duration: 0.5 }}
-                className="relative bg-zinc-900 px-6 py-5 overflow-hidden"
-              >
-                <p className="text-4xl font-black italic tracking-tighter leading-[1.05] mb-3 text-red-600">
-                  SIEMPRE EN<br />MOVIMIENTO
-                </p>
-                <div className="h-[2px] w-16 bg-red-600 mb-3" />
-                <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-zinc-400">
-                  Servicio 24 horas
-                </p>
-                <motion.div
-                  animate={{ x: [-200, 600], opacity: [0, 0.08, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                  className="absolute top-0 left-0 w-24 h-full bg-white skew-x-12"
+              {/* Glow behind card */}
+              <div className="absolute inset-0 bg-red-600/20 rounded-3xl blur-[50px] scale-95 translate-y-4" />
+              <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/8 shadow-[0_32px_80px_rgba(0,0,0,0.7)]">
+                <Image
+                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/20d9c869-8da0-4255-9e75-670095d3e726/MOTOUBIGO-1768390783964.jpg?width=8000&height=8000&resize=contain"
+                  alt="UbiGo Ride"
+                  width={800}
+                  height={560}
+                  className="w-full object-cover"
+                  priority
                 />
-              </motion.div>
+                {/* Caption bar */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.9, duration: 0.6 }}
+                  className="relative bg-zinc-900 px-7 py-6 overflow-hidden border-t border-white/5"
+                >
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <p className="text-[2.1rem] font-black italic tracking-tighter leading-[1] text-white">
+                        SIEMPRE EN<br />
+                        <span className="text-red-500">MOVIMIENTO</span>
+                      </p>
+                      <div className="flex items-center gap-3 mt-3">
+                        <div className="h-[2px] w-8 bg-red-500" />
+                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500">
+                          Servicio 24 horas
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-center gap-1 shrink-0 ml-4">
+                      <div className="w-10 h-10 rounded-full bg-red-600/15 border border-red-500/30 flex items-center justify-center">
+                        <div className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+                      </div>
+                      <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-600">Live</span>
+                    </div>
+                  </div>
+                  {/* shimmer */}
+                  <motion.div
+                    animate={{ x: [-300, 700] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "linear", repeatDelay: 2 }}
+                    className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12 pointer-events-none"
+                  />
+                </motion.div>
+              </div>
             </motion.div>
 
+            {/* RIGHT — Copy + booking form */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <h1 className="text-6xl md:text-8xl font-black text-white leading-tight mb-6">
-                Viaja con <br />
-                <span className="text-red-600">Planificación.</span>
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5 }}
+                className="inline-flex items-center gap-2 bg-red-600/10 border border-red-500/20 rounded-full px-4 py-1.5 mb-6"
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                <span className="text-red-400 text-[11px] font-bold uppercase tracking-widest">Madrid · Disponible ahora</span>
+              </motion.div>
+
+              <h1 className="text-5xl sm:text-6xl xl:text-7xl font-black text-white leading-[0.95] tracking-tighter mb-5">
+                Viaja con<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">
+                  Planificación.
+                </span>
               </h1>
-              <p className="text-xl text-zinc-400 mb-10 max-w-lg leading-relaxed">
-                  La forma más segura y puntual de moverte por Madrid. UbiGo! se especializa exclusivamente en reservas de transporte de personas.
+              <p className="text-base text-zinc-400 mb-8 max-w-sm leading-relaxed">
+                La forma más segura y puntual de moverte por Madrid. Reservas anticipadas, conductores verificados.
               </p>
 
-              <div id="pide-tu-viaje" className="bg-white p-8 rounded-2xl shadow-2xl max-w-md scroll-mt-24">
-                <h3 className="text-black text-2xl font-bold mb-6 flex items-center gap-2">
-                  Pide tu viaje
-                </h3>
-                <div className="space-y-4">
-                  <PlacesAutocompleteInput
-                    placeholder="Ubicación de origen"
-                    value={origin}
-                    onChange={setOrigin}
-                    icon={<MapPin className="text-red-600" size={20} />}
-                  />
-                  <PlacesAutocompleteInput
-                    placeholder="Destino"
-                    value={destination}
-                    onChange={setDestination}
-                    icon={<Navigation className="text-zinc-400" size={20} />}
-                  />
-                  {error && <p className="text-red-600 text-sm">{error}</p>}
+              {/* Booking card */}
+              <div id="pide-tu-viaje"
+                className="bg-white/[0.04] backdrop-blur-sm border border-white/10 p-6 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.4)] max-w-md scroll-mt-24">
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="w-1 h-5 bg-red-500 rounded-full" />
+                  <h3 className="text-white text-lg font-bold">Pide tu viaje</h3>
+                </div>
+                <div className="space-y-3">
+                  <div className="bg-white/[0.06] border border-white/10 rounded-xl overflow-hidden focus-within:border-red-500/50 transition-colors">
+                    <PlacesAutocompleteInput
+                      placeholder="Ubicación de origen"
+                      value={origin}
+                      onChange={setOrigin}
+                      icon={<MapPin className="text-red-500" size={17} />}
+                    />
+                  </div>
+                  <div className="bg-white/[0.06] border border-white/10 rounded-xl overflow-hidden focus-within:border-red-500/50 transition-colors">
+                    <PlacesAutocompleteInput
+                      placeholder="Destino"
+                      value={destination}
+                      onChange={setDestination}
+                      icon={<Navigation className="text-zinc-500" size={17} />}
+                    />
+                  </div>
+                  {error && (
+                    <p className="text-red-400 text-sm flex items-center gap-1.5">
+                      <span className="w-1 h-1 rounded-full bg-red-400 inline-block" />{error}
+                    </p>
+                  )}
                   <Button
                     onClick={calculatePrices}
                     disabled={loading}
-                    className="w-full h-14 bg-black hover:bg-zinc-800 text-white font-bold text-lg rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-95 disabled:opacity-50"
+                    className="w-full h-12 bg-red-600 hover:bg-red-500 text-white font-bold text-sm rounded-xl flex items-center justify-center gap-2 shadow-[0_0_24px_rgba(220,38,38,0.4)] hover:shadow-[0_0_32px_rgba(220,38,38,0.6)] transition-all active:scale-[0.98] disabled:opacity-50"
                   >
                     {loading ? (
-                      <><Loader2 className="animate-spin" size={20} />Calculando...</>
+                      <><Loader2 className="animate-spin" size={17} />Calculando...</>
                     ) : (
-                      <>Ver Precios <ArrowRight size={20} /></>
+                      <>Ver Precios <ArrowRight size={17} /></>
                     )}
                   </Button>
                 </div>
               </div>
+
+              {/* Trust signals */}
+              <div className="flex items-center gap-6 mt-6">
+                {[["4.9★","Valoración media"],["24h","Servicio continuo"],["100%","Conductores verificados"]].map(([val, label]) => (
+                  <div key={label} className="text-center">
+                    <p className="text-white font-black text-sm">{val}</p>
+                    <p className="text-zinc-600 text-[10px] leading-tight">{label}</p>
+                  </div>
+                ))}
+              </div>
             </motion.div>
+
           </div>
         </div>
       </section>

@@ -360,50 +360,91 @@ function BookingModal({ onClose }: { onClose: () => void }) {
   )
 }
 
+const steps = [
+  { n: "01", title: "Elige fecha y hora", desc: "Planifica con días de antelación o reserva para hoy mismo." },
+  { n: "02", title: "Indica tu ruta", desc: "Origen y destino en Madrid. Calculamos precio al instante." },
+  { n: "03", title: "Conductor asignado", desc: "Conductor verificado con rating 4.8+ confirmado para tu viaje." },
+]
+
 export function UbiGoServices() {
   const [showBooking, setShowBooking] = useState(false)
 
   return (
-    <section id="servicios" className="py-24 bg-black relative overflow-hidden">
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[500px] h-[500px] bg-red-600/5 rounded-full blur-[120px]" />
+    <section id="servicios" className="py-28 bg-zinc-950 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-red-600/6 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-red-600/4 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-black text-white mt-4 mb-6 tracking-tighter">
-            Reserva tu transporte <br /><span className="text-red-600">con antelación</span>
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 relative z-10">
+
+        {/* Header */}
+        <div className="max-w-xl mb-20">
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            className="inline-flex items-center gap-2 bg-red-600/10 border border-red-500/20 rounded-full px-4 py-1.5 mb-6">
+            <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
+            <span className="text-red-400 text-[11px] font-bold uppercase tracking-widest">Cómo funciona</span>
+          </motion.div>
+          <motion.h2 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-[1.05] mb-5">
+            Reserva tu transporte<br /><span className="text-red-500">con antelación</span>
           </motion.h2>
-          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-            className="text-zinc-400 text-lg max-w-2xl mx-auto">
-            UbiGo! se enfoca exclusivamente en el transporte de personas mediante reservas, garantizando puntualidad y seguridad.
+          <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
+            className="text-zinc-400 text-base leading-relaxed">
+            UbiGo! se enfoca exclusivamente en el transporte de personas mediante reservas anticipadas, garantizando puntualidad y seguridad absoluta.
           </motion.p>
         </div>
 
-        <div className="max-w-2xl mx-auto">
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-3xl font-black text-white mb-4">Reservas</h3>
-              <p className="text-zinc-400 text-lg leading-relaxed">
-                Planifica tus traslados con antelación y asegura tu transporte con los mejores conductores.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {["Prioridad de asignación", "Recordatorios vía app", "Cancelación flexible"].map((feature, idx) => (
-                <div key={idx} className="flex items-center gap-3 bg-zinc-900/40 p-4 rounded-xl border border-zinc-800/50 hover:border-red-600/50 transition-colors">
-                  <div className="bg-red-600/10 p-2 rounded-lg text-red-600"><Shield size={20} /></div>
-                  <span className="text-zinc-300 font-medium">{feature}</span>
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+
+          {/* Steps */}
+          <div className="space-y-6">
+            {steps.map((s, i) => (
+              <motion.div key={s.n}
+                initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                className="flex gap-5 group"
+              >
+                <div className="shrink-0 w-12 h-12 rounded-2xl bg-zinc-900 border border-white/5 flex items-center justify-center font-black text-sm text-red-500 group-hover:bg-red-600/10 group-hover:border-red-500/30 transition-all">
+                  {s.n}
                 </div>
-              ))}
-            </div>
-            <div className="pt-4">
+                <div className="pt-1">
+                  <h3 className="text-white font-bold text-base mb-1">{s.title}</h3>
+                  <p className="text-zinc-500 text-sm leading-relaxed">{s.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+
+            <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.35 }}
+              className="pt-4">
               <Button onClick={() => setShowBooking(true)}
-                className="bg-red-600 hover:bg-red-700 text-white font-bold h-14 px-8 rounded-xl text-lg group">
+                className="bg-red-600 hover:bg-red-500 text-white font-bold h-12 px-7 rounded-xl text-sm shadow-[0_0_24px_rgba(220,38,38,0.4)] hover:shadow-[0_0_36px_rgba(220,38,38,0.6)] transition-all active:scale-[0.98] gap-2">
                 Reservar ahora
-                <motion.span animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 1.5 }} className="ml-2">→</motion.span>
+                <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.4 }}>→</motion.span>
               </Button>
-            </div>
+            </motion.div>
           </div>
+
+          {/* Feature cards */}
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              { icon: <Shield size={20} />, title: "Conductores verificados", desc: "Todos con antecedentes y formación certificada." },
+              { icon: <Clock size={20} />, title: "Puntualidad garantizada", desc: "Llegamos antes que tú lo necesites." },
+              { icon: <MapPin size={20} />, title: "Cobertura total Madrid", desc: "Centro, barrios y área metropolitana." },
+              { icon: <Star size={20} />, title: "Valoración 4.9 / 5", desc: "Miles de usuarios satisfechos en Madrid." },
+            ].map((card, i) => (
+              <motion.div key={card.title}
+                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+                className="bg-zinc-900/50 border border-white/5 rounded-2xl p-5 hover:border-red-500/25 hover:bg-zinc-900/80 transition-all group"
+              >
+                <div className="w-9 h-9 rounded-xl bg-red-600/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4 group-hover:bg-red-600/20 transition-colors">
+                  {card.icon}
+                </div>
+                <p className="text-white font-bold text-sm mb-1">{card.title}</p>
+                <p className="text-zinc-500 text-xs leading-relaxed">{card.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
         </div>
       </div>
 
