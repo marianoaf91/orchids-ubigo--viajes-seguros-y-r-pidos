@@ -90,6 +90,7 @@ function BookingModal({ onClose }: { onClose: () => void }) {
   const [step, setStep] = useState<Step>("date")
   const [current, setCurrent] = useState({ month: today.getMonth(), year: today.getFullYear() })
   const [selectedDay, setSelectedDay] = useState<number | null>(null)
+  const [selectedHour, setSelectedHour] = useState<string | null>(null)
   const [origin, setOrigin] = useState("")
   const [destination, setDestination] = useState("")
   const [loading, setLoading] = useState(false)
@@ -183,12 +184,14 @@ function BookingModal({ onClose }: { onClose: () => void }) {
 
         <AnimatePresence mode="wait">
 
-          {/* STEP 1 — Date */}
+          {/* STEP 1 — Date + Time */}
           {step === "date" && (
             <motion.div key="date" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} className="px-8 pb-8">
               <h2 className="text-2xl font-black text-black mb-1">¿Cuándo viajas?</h2>
-              <p className="text-zinc-400 text-sm mb-5">Selecciona la fecha de tu reserva</p>
-              <div className="bg-zinc-50 rounded-2xl p-4 mb-5 select-none">
+              <p className="text-zinc-400 text-sm mb-5">Selecciona fecha y hora de recogida</p>
+
+              {/* Calendar */}
+              <div className="bg-zinc-50 rounded-2xl p-4 mb-4 select-none">
                 <div className="flex items-center justify-between mb-4">
                   <button onClick={prev} className="p-2 rounded-xl hover:bg-zinc-200 text-zinc-400 transition-colors"><ChevronLeft size={18} /></button>
                   <div className="text-center">
@@ -217,9 +220,45 @@ function BookingModal({ onClose }: { onClose: () => void }) {
                   ))}
                 </div>
               </div>
-              <Button onClick={() => selectedDay && setStep("route")} disabled={!selectedDay}
-                className="w-full h-12 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl disabled:opacity-40">
-                Continuar <ArrowRight size={16} className="ml-1" />
+
+              {/* Time picker — shown once a day is selected */}
+              <AnimatePresence>
+                {selectedDay && (
+                  <motion.div
+                    key="timepicker"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="overflow-hidden mb-4"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <Clock size={14} className="text-red-600" />
+                      <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Hora de recogida</p>
+                    </div>
+                    <div className="grid grid-cols-4 gap-2">
+                      {["07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00",
+                        "15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00"].map(h => (
+                        <button
+                          key={h}
+                          onClick={() => setSelectedHour(h)}
+                          className={`py-2 rounded-xl text-xs font-bold transition-all
+                            ${selectedHour === h
+                              ? "bg-red-600 text-white shadow-[0_0_10px_rgba(220,38,38,0.4)]"
+                              : "bg-zinc-50 text-zinc-600 hover:bg-zinc-100 border border-zinc-200"
+                            }`}
+                        >
+                          {h}
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <Button onClick={() => selectedDay && selectedHour && setStep("route")} disabled={!selectedDay || !selectedHour}
+                className="w-full h-12 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl disabled:opacity-40 gap-2">
+                Continuar <ArrowRight size={16} />
               </Button>
             </motion.div>
           )}
@@ -232,7 +271,8 @@ function BookingModal({ onClose }: { onClose: () => void }) {
               </button>
               <h2 className="text-2xl font-black text-black mb-1">¿De dónde a dónde?</h2>
               <p className="text-zinc-400 text-sm mb-5">
-                Viaje para el <span className="font-bold text-black">{selectedDay} {MONTHS[current.month]}, {current.year}</span>
+                <span className="font-bold text-black">{selectedDay} {MONTHS[current.month]}, {current.year}</span>
+                {selectedHour && <> · <span className="font-bold text-red-600">{selectedHour}</span></>}
               </p>
               <div className="space-y-3 mb-5">
                 <PlacesAutocompleteInput placeholder="Ubicación de origen" value={origin} onChange={setOrigin}
@@ -255,7 +295,9 @@ function BookingModal({ onClose }: { onClose: () => void }) {
                 <ChevronLeft size={16} /> Volver
               </button>
               <h2 className="text-2xl font-black text-black mb-1">Elige tu tarifa</h2>
-              <p className="text-zinc-400 text-sm mb-4">{selectedDay} {MONTHS[current.month]} · {origin} → {destination.split(",")[0]}</p>
+              <p className="text-zinc-400 text-sm mb-4">
+                {selectedDay} {MONTHS[current.month]}{selectedHour && <> · <span className="font-bold text-red-600">{selectedHour}</span></>} · {origin} → {destination.split(",")[0]}
+              </p>
               <div className="flex gap-3 mb-5">
                 <div className="bg-red-50 rounded-xl p-3 flex-1 text-center">
                   <p className="text-xl font-black text-red-600">{priceResult.distance} km</p>
@@ -316,7 +358,7 @@ function BookingModal({ onClose }: { onClose: () => void }) {
               <div className="bg-red-50 rounded-xl p-4 mb-5 flex items-center justify-between">
                 <div>
                   <p className="font-bold text-black text-sm">{selectedTier.name}</p>
-                  <p className="text-xs text-zinc-500">{selectedDay} {MONTHS[current.month]} · {priceResult.distance} km · {priceResult.duration} min</p>
+                  <p className="text-xs text-zinc-500">{selectedDay} {MONTHS[current.month]}{selectedHour && ` · ${selectedHour}`} · {priceResult.distance} km · {priceResult.duration} min</p>
                 </div>
                 <p className="text-2xl font-black text-black">{selectedTier.price.toFixed(2)}€</p>
               </div>
@@ -339,7 +381,9 @@ function BookingModal({ onClose }: { onClose: () => void }) {
               </motion.div>
               <h2 className="text-2xl font-black text-black mb-2">¡Reserva Confirmada!</h2>
               <p className="text-zinc-500 mb-1">Tu transporte ha sido programado</p>
-              <p className="text-red-600 font-bold text-sm mb-6">{selectedDay} {MONTHS[current.month]}, {current.year}</p>
+              <p className="text-red-600 font-bold text-sm mb-6">
+                {selectedDay} {MONTHS[current.month]}, {current.year}{selectedHour && ` · ${selectedHour}`}
+              </p>
               {assignedDriver && (
                 <div className="bg-zinc-100 rounded-xl p-4 mb-6 flex items-center gap-4 text-left">
                   <Image src={assignedDriver.photo} alt={assignedDriver.name} width={52} height={52} className="rounded-full object-cover" />
