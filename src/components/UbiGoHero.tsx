@@ -305,7 +305,7 @@ export function UbiGoHero() {
                   La forma más segura y puntual de moverte por Madrid. UbiGo! se especializa exclusivamente en reservas de transporte de personas.
               </p>
 
-              <div id="pide-tu-viaje" className="bg-white p-8 rounded-2xl shadow-2xl max-w-md">
+              <div id="pide-tu-viaje" className="bg-white p-8 rounded-2xl shadow-2xl max-w-md scroll-mt-24">
                 <h3 className="text-black text-2xl font-bold mb-6 flex items-center gap-2">
                   Pide tu viaje
                 </h3>
