@@ -25,7 +25,7 @@ export default function RootLayout({
         />
         <ErrorReporter />
         <Script
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9UI_yTYSI8-FSW49ZV_Xc2yP5JJs8NY&libraries=places&language=es&region=ES"
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEockyTuhLzf1PMVNZ0HfOIEGqP9SwruM&libraries=places&language=es&region=ES"
           strategy="beforeInteractive"
         />
         <Script
