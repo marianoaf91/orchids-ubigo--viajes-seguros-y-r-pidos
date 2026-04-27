@@ -149,7 +149,7 @@ function BookingModal({ onClose }: { onClose: () => void }) {
     >
       <motion.div initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0 }}
         onClick={e => e.stopPropagation()}
-        className="bg-white rounded-3xl w-full max-w-md shadow-2xl relative overflow-hidden"
+        className="bg-white rounded-3xl w-full max-w-md shadow-2xl relative overflow-y-auto max-h-[90vh]"
       >
         <button onClick={onClose} className="absolute top-4 right-4 p-2 hover:bg-zinc-100 rounded-full transition-colors z-10">
           <X size={22} className="text-zinc-400" />
@@ -157,7 +157,7 @@ function BookingModal({ onClose }: { onClose: () => void }) {
 
         {/* Progress bar */}
         {step !== "confirmed" && (
-          <div className="px-8 pt-6 pb-4">
+          <div className="px-8 pt-5 pb-3">
             <div className="flex items-center justify-between mb-2">
               {stepNames.map((name, i) => {
                 const stepOrder: Step[] = ["date", "route", "pricing", "driver"]
@@ -186,12 +186,12 @@ function BookingModal({ onClose }: { onClose: () => void }) {
 
           {/* STEP 1 — Date + Time */}
           {step === "date" && (
-            <motion.div key="date" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} className="px-8 pb-8">
+            <motion.div key="date" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} className="px-8 pb-8 flex flex-col">
               <h2 className="text-2xl font-black text-black mb-1">¿Cuándo viajas?</h2>
-              <p className="text-zinc-400 text-sm mb-5">Selecciona fecha y hora de recogida</p>
+              <p className="text-zinc-400 text-sm mb-3">Selecciona fecha y hora de recogida</p>
 
               {/* Calendar */}
-              <div className="bg-zinc-50 rounded-2xl p-4 mb-4 select-none">
+              <div className="bg-zinc-50 rounded-2xl p-3 mb-3 select-none">
                 <div className="flex items-center justify-between mb-4">
                   <button onClick={prev} className="p-2 rounded-xl hover:bg-zinc-200 text-zinc-400 transition-colors"><ChevronLeft size={18} /></button>
                   <div className="text-center">
@@ -230,19 +230,19 @@ function BookingModal({ onClose }: { onClose: () => void }) {
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.25 }}
-                    className="overflow-hidden mb-4"
+                    className="overflow-hidden mb-3"
                   >
                     <div className="flex items-center gap-2 mb-3">
                       <Clock size={14} className="text-red-600" />
                       <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Hora de recogida</p>
                     </div>
-                    <div className="grid grid-cols-4 gap-2">
+                    <div className="grid grid-cols-4 gap-1.5">
                       {["07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00",
                         "15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00"].map(h => (
                         <button
                           key={h}
                           onClick={() => setSelectedHour(h)}
-                          className={`py-2 rounded-xl text-xs font-bold transition-all
+                          className={`py-1.5 rounded-lg text-xs font-bold transition-all
                             ${selectedHour === h
                               ? "bg-red-600 text-white shadow-[0_0_10px_rgba(220,38,38,0.4)]"
                               : "bg-zinc-50 text-zinc-600 hover:bg-zinc-100 border border-zinc-200"
